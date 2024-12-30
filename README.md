@@ -1,7 +1,7 @@
 # Leetcode
 Leetcode question submissions and notes.
 
-## 1837. Sum of Digits in Base K
+## Converting a number to base K (1837. Sum of Digits in Base K)
 - You can get the last digit of a number in base k by taking the modulo of that number and k.
 - If you divide by k, it removes the rightmost digit of the base k number, allowing you to get the next number by taking the modulo again
 - This only works if your base is from 2-10, because we don't have enough characters to represent more than 10 digits in say, base 16.
