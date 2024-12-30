@@ -1,43 +1,51 @@
-#include <set>
+#include <map>
 
 class Solution {
 public:
     vector<int> findEvenNumbers(const vector<int>& digits) {
-        std::set<int> digitSet{};
+        std::map<int, int> digitBank{};
 
-        // For every even digit,
-        for (int i = 0; i < digits.size(); i++){
-            if (digits[i] % 2 != 0){
+        for (int i = 0; i < 10; i++){
+            digitBank.insert({i, 0});
+        }
+
+        for (const auto &digit : digits){
+            digitBank.at(digit) += 1;
+        }
+
+
+        std::vector<int> result{};
+
+        for (int i = 1; i < 10; i++){
+            if (digitBank.at(i) <= 0){
                 continue;
             }
-            int num = digits[i];
+            digitBank.at(i)--;
 
-            // For every digit that isn't the even one,
-            for (int j = 0; j < digits.size(); j++){
-                if (i == j){
+            int firstNum = i * 100;
+
+            for (int j = 0; j < 10; j++){
+                if (digitBank.at(j) <= 0){
                     continue;
                 }
-                num += digits[j] * 10;
+                digitBank.at(j)--;
 
-                // For every digit that isn't the even or first one,
-                for (int k = 0; k < digits.size(); k++){
-                    int thirdNum = digits[k];
+                int sum = firstNum + j * 10;
 
-                    if (thirdNum == 0 || i == k || j == k){
+                for (int k = 0; k < 10; k+=2){
+                    if (digitBank.at(k) <= 0){
                         continue;
                     }
 
-                    // Add the 3 digits to a set
-                    digitSet.insert(num + thirdNum * 100);
+                    result.push_back(sum + k);
                 }
 
-                num -= digits[j] * 10;
+                digitBank.at(j)++;
             }
+
+            digitBank.at(i)++;
         }
 
-        // Cast the set to a vector
-        std::vector<int> digitVector(digitSet.begin(), digitSet.end());
-        // Return the vector
-        return digitVector;
+        return result;
     }
 };
