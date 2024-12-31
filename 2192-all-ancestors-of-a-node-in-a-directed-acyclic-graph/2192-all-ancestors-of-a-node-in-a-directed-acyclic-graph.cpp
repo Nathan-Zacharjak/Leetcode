@@ -1,5 +1,3 @@
-#include <print>
-
 class Solution {
 public:
     vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
@@ -44,12 +42,6 @@ public:
                     nodeQ.push(child);
                 }
             }
-        // Pop the next node...
-        }
-
-        println("Topological sort:");
-        for (const auto &node : topoSort){
-            println("{}", node);
         }
 
         // Use the topological sort to process each node in the correct order
@@ -66,13 +58,6 @@ public:
 
                 // and add the node itself as an ancestor to each child
                 ancestorSets.at(child).insert(parent);
-            }
-        }
-
-        for (int i = 0; i < n; i++){
-            println("{}'s ancestors:", i);
-            for (const auto &ancestor : ancestorSets.at(i)){
-                println("{}", ancestor);
             }
         }
 
