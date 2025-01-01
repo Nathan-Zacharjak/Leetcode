@@ -1,7 +1,7 @@
 class Solution {
 private:
     int charToInt(char c){
-        return c - 97;
+        return c - 'a';
     }
 
 public:
