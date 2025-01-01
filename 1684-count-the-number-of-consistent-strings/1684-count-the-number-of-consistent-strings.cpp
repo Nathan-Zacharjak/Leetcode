@@ -1,5 +1,3 @@
-#include <print>
-
 class Solution {
 private:
     int charToInt(char c){
@@ -10,8 +8,8 @@ public:
     int countConsistentStrings(string allowed, vector<string>& words) {
         // Throw all characters in the allowed string into a hash table array
         array<bool, 26> allowedChars;
+
         for (const auto & c : allowed){
-            println("Char: {}, Index: {}", c, charToInt(c));
             allowedChars.at(charToInt(c)) = true;
         }
 
@@ -34,7 +32,7 @@ public:
                 wordCount++;
             }
         }
-        
+
         // Return the solution count
         return wordCount;
     }
