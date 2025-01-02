@@ -46,3 +46,20 @@
 - Then you iterate to the next node in topological order, and continue until the last node
 - Finally, to convert a list of hash tables into a list of ordered lists, you iterate through all possible nodes in index order, and add it to each ancestor list it is a part of
 
+# 2553. Separate the Digits in an Array
+## Getting digits from an int
+- Makes numbers easier to deal with
+- You can just loop through the string from the start, and just convert each character back into an int using the ASCII trick!
+- There's a difference between a frequency map and a frequency table! (Hash map vs. table!)
+
+# 1684. Count the Number of Consistent Strings
+## Bit array vs. hash table
+- Although using a bit array give O(1) complexity, as opposed to a hash table's O(m) complexity, where m is the number of allowed characters, this is misleading, as a hash table to store allowed characters offers more flexibility to store more possible elements in the hash table
+
+## Bit manipulation
+- Vector.size() runs in O(1) time, so setting a count of allowed things to the total number of things, then decreasing by 1 whenever we find a not allowed thing is a cleaner way to count the total number of allowed things
+- We can use a bit mask to store allowed characters in an integer, which will lead to flexibility (use larger int) and O(1) space complexity
+- We use 1, and bit shift left x number of times, where x represents an index representing the allowed object, and OR-ing with the 32-bit 0 integer
+- We then find if an object is allowed by bit shifting the bit mask right x times, and AND-ing with 1, where x is the index of the object (Like in a boolean array)
+- For bit flags, OR = insert, AND = check
+- Then simply decrement the allowed object counter by 1, and return the allowed object count
