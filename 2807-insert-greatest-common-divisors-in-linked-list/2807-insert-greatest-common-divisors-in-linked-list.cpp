@@ -18,13 +18,7 @@ public:
             int val1 = currentNode->val;
             int val2 = nextNode->val;
 
-            while (val2 != 0){
-                int temp = val2;
-                val2 = val1 % val2;
-                val1 = temp;
-            }
-
-            currentNode->next = new ListNode(val1, nextNode);
+            currentNode->next = new ListNode(gcd(val1, val2), nextNode);
             currentNode = nextNode;
         }
 
