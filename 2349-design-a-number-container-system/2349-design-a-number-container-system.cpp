@@ -1,5 +1,3 @@
-// #include <print>
-
 class NumberContainers {
 private:
     unordered_map<int, int> container;
@@ -11,8 +9,6 @@ public:
     }
     
     void change(int index, int number) {
-        // println("Change: Index: {}, Number: {}", index, number);
-
         if (container.contains(index)){
             int oldNum = container.at(index);
             indexes.at(oldNum).erase(index);
@@ -27,8 +23,6 @@ public:
     }
     
     int find(int number) {
-        // println("Find: Number: {}", number);
-
         if (indexes.contains(number)){
             return *indexes.at(number).begin();
         }
