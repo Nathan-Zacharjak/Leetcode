@@ -1,5 +1,3 @@
-#include <print>
-
 class Solution {
 private:
     bool isSameParity(char c1, char c2){
@@ -8,10 +6,6 @@ private:
         bool c1Even = i1 % 2 == 0;
         bool c2Even = i2 % 2 == 0;
         
-        println("c1: {}, c2: {}", c1, c2);
-        println("i1: {}, i2: {}", i1, i2);
-        println("c1Even : {}, c2Even: {}", c1Even, c2Even);
-
         if ((c1Even && c2Even) || (!c1Even && !c2Even)){
             return true;
         }
