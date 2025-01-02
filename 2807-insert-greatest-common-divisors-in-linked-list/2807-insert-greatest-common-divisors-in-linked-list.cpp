@@ -11,30 +11,23 @@
 class Solution {
 public:
     ListNode* insertGreatestCommonDivisors(ListNode* head) {
-        if (head->next == nullptr){
-            return head;
-        }
-
-        ListNode* currentNode = head;
+        ListNode * currentNode = head;
 
         while (currentNode->next != nullptr){
-            ListNode* nextNode = currentNode->next;
+            ListNode * nextNode = currentNode->next;
             int val1 = currentNode->val;
             int val2 = nextNode->val;
 
-            // Start with the lower value as the divisor, as GCD cannot be greater than it
-            int divisor = val1 < val2 ? val2 : val1;
-
-            while (val1 % divisor != 0 || val2 % divisor != 0){
-                divisor -= 1;
+            while (val2 != 0){
+                int temp = val2;
+                val2 = val1 % val2;
+                val1 = temp;
             }
 
-            ListNode* newNode = new ListNode(divisor, nextNode);
-            currentNode->next = newNode;
-
+            currentNode->next = new ListNode(val1, nextNode);
             currentNode = nextNode;
         }
-        
+
         return head;
     }
 };
