@@ -1,27 +1,14 @@
 class Solution {
-private:
-    bool isSameParity(char c1, char c2){
-        int i1 = c1 - '0';
-        int i2 = c2 - '0';
-        bool c1Even = i1 % 2 == 0;
-        bool c2Even = i2 % 2 == 0;
-        
-        if ((c1Even && c2Even) || (!c1Even && !c2Even)){
-            return true;
-        }
-
-        return false;
-    }
-
 public:
     string getSmallestString(string s) {
-        for (int i = 0; i < s.size() - 1; i++){
-            char c1 = s.at(i);
-            char c2 = s.at(i + 1);
+        int maxLoops = s.size() - 1;
 
-            if (c1 > c2 && isSameParity(c1, c2)){
-                s.at(i) = c2;
-                s.at(i + 1) = c1;
+        for (int i = 0; i < maxLoops; i++){
+            int i1 = s[i] - '0';
+            int i2 = s[i+1] - '0';
+
+            if (i1 % 2 == i2 % 2 && i1 > i2){
+                swap(s[i], s[i+1]);
                 return s;
             }
         }
