@@ -63,3 +63,29 @@
 - We then find if an object is allowed by bit shifting the bit mask right x times, and AND-ing with 1, where x is the index of the object (Like in a boolean array)
 - For bit flags, OR = insert, AND = check
 - Then simply decrement the allowed object counter by 1, and return the allowed object count
+
+# 3216. Lexicographically Smallest String After a Swap
+## Check for number "parity"
+- "Parity" means if 2 numbers are both even or both odd, if they are, they're the same parity!
+- You can check for parity easily by doing: num1 % 2 == num2 % 2
+- Using swap() in c++ is fine! So long as you are actually swapping 2 pointers in memory that is actually going to be saved outside of the current scope! (And the pointers are to simple data types and not objects, instead use the object's in-built obj.swap() function!)
+
+
+# 206. Reverse Linked List
+## Recursive space complexity
+- Not necessarily true that a recursive approach will have a linear space complexity!
+- All recursive functions can be written iteratively!
+- And because of DP, it's very possible that a linear approach can be written in a O(1) space complexity way, using 1 or 2 variables to store the data needed for a DP approach!
+
+
+# 2807. Insert Greatest Common Divisors in Linked List
+## In-built functions
+- Look up what in-built functions are available for your language!!!
+- You might not need to invent the whole solution yourself, in-built functions are almost always going to have the best time and space complexity!
+- (You might still need to know the complexity of the in-built function itself however...)
+
+## Calculating the GCD
+- There's an in-built function for this in C++, which runs in O(log(n)) time!
+- It uses the "Euclidean algorithm", which involves repeatedly dividing the larger number by the smaller number, and replacing the larger number with the remainder, and the smaller number by the original larger number, until one of the numbers becomes 0!
+- How many times can you repeatedly divide something? O(log n) times!
+
