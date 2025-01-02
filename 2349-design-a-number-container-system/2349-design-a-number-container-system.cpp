@@ -1,4 +1,4 @@
-#include <print>
+// #include <print>
 
 class NumberContainers {
 private:
@@ -11,7 +11,7 @@ public:
     }
     
     void change(int index, int number) {
-        println("Change: Index: {}, Number: {}", index, number);
+        // println("Change: Index: {}, Number: {}", index, number);
 
         if (container.contains(index)){
             int oldNum = container.at(index);
@@ -27,7 +27,7 @@ public:
     }
     
     int find(int number) {
-        println("Find: Number: {}", number);
+        // println("Find: Number: {}", number);
 
         if (indexes.contains(number)){
             return *indexes.at(number).begin();
