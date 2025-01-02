@@ -48,7 +48,7 @@
 
 # 2553. Separate the Digits in an Array
 ## Getting digits from an int
-- Makes numbers easier to deal with
+- Convert the integer into a string, makes numbers easier to deal with!
 - You can just loop through the string from the start, and just convert each character back into an int using the ASCII trick!
 - There's a difference between a frequency map and a frequency table! (Hash map vs. table!)
 
