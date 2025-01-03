@@ -19,20 +19,7 @@ public:
 
             answer.push_back(specialSetIndex.at(start) - specialSetIndex.at(end) == 0);
         }
-        // // For every query
-        // for (const auto query : queries){
-        //     // Set the start and end positions of the query in the array
-        //     int index = query.at(0);
-        //     int end = query.at(1);
-        //     // Sliding window check each element for parity in range
-        //     while (index != end && nums.at(index) % 2 != nums.at(index + 1) % 2){
-        //         index++;
-        //     }
-        //     // If non parity pair found, push false, break loop
-        //     // Else push true
-        //     answer.push_back(index == end);
-        // }
-        // Return bit vector
+
         return answer;
     }
 };
