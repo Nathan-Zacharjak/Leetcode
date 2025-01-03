@@ -57,6 +57,7 @@
 - Although using a bit array give O(1) complexity, as opposed to a hash table's O(m) complexity, where m is the number of allowed characters, this is misleading, as a hash table to store allowed characters offers more flexibility to store more possible elements in the hash table
 
 ## Bit manipulation
+- Anything that can use a bit vector can use a bitmask instead! (So long as the size of the bit vector is known, and it isn't too large! So long as bit vector is less than 32/64 you're good!)
 - Vector.size() runs in O(1) time, so setting a count of allowed things to the total number of things, then decreasing by 1 whenever we find a not allowed thing is a cleaner way to count the total number of allowed things
 - We can use a bit mask to store allowed characters in an integer, which will lead to flexibility (use larger int) and O(1) space complexity
 - We use 1, and bit shift left x number of times, where x represents an index representing the allowed object, and OR-ing with the 32-bit 0 integer
@@ -89,3 +90,28 @@
 - It uses the "Euclidean algorithm", which involves repeatedly dividing the larger number by the smaller number, and replacing the larger number with the remainder, and the smaller number by the original larger number, until one of the numbers becomes 0!
 - How many times can you repeatedly divide something? O(log n) times!
 
+
+# 1110. Delete Nodes And Return Forest
+## Pre/post-order traversal tree node deletion
+- You can use either post or pre-order tree traversal to traverse and safely delete nodes from a tree
+- For pre-order traversal, you need to pass the parent node as a parameter in a traversal call, and check whether the parent was deleted to safely mark it as so, and mark the current node as a new root
+- Post-order traversal, you pass the child node as a return value, and update the parent node's left/right pointer to this value, where the child node already had its possible deletion processed
+
+
+# 136. Single Number
+## XOR operator
+- i ^ i = 0
+- xor is commutative! j^i^i = i^j^i = i^i^j = j
+- Use this to simply explain how to do the xor nums trick!
+- You can start with an initial value of 0, since XOR-ing with 0 does nothing! 0^i = i
+- Bit operators can use the "+=" notation, e.g. result ^= i
+
+## Large integers
+- When the size of an integer is very large, you need to consider whether it will actually fit in an "int" type variable!
+- int16_t = 16 bits > 10^3
+- int32_t = 32 bits > 10^8
+- int64_t = 64 bits > 10^18
+
+
+# 3152. Special Array II
+## 
