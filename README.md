@@ -114,4 +114,14 @@
 
 
 # 3152. Special Array II
-## 
+## Prefix Sum
+- You can label indexes into groups in an array using a so-called "prefix sum"
+- This is where each index in the same group is labelled by the number of the group it's in, where every element in the same group is in one *continuous* block
+- E.g. you could label by "breakfast" and "dessert": ["egg", "bacon", "chocolate", "ice cream"] = [0,0,1,1]
+- "egg" and "bacon" belong to group 0, and "chocolate" and "ice cream" belong to group 1
+- Now, simply by taking away the value of the end of a sub-array, with the beginning of a sub-array, you can tell if all elements in that sub-array are in the same group or not!
+- If the subtraction is 0, then all elements are in the same group!
+- The labelling can be done easily by adding 1 from the last prefix if 2 adjacent pairs aren't in the same group, in linear time!
+- The prefix sum could also be interpreted as the total number of groups so far
+- This only works if all array groups are *continuous*, e.g. adding "toast" to the end of the example would label "toast" in a different group to the other "breakfast" elements
+
