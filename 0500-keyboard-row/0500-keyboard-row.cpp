@@ -1,4 +1,4 @@
-#include <print>
+// #include <print>
 
 class Solution {
 public:
@@ -15,8 +15,8 @@ public:
         for (const auto &word : words){
             for (const auto &c : word){
                 char lowerC = tolower(c);
-                cout << c << endl;
-                println("1: {}, 2: {}, 3: {}", row1, row2, row3);
+                // cout << c << endl;
+                // println("1: {}, 2: {}, 3: {}", row1, row2, row3);
 
                 if (!row1Chars.contains(lowerC)){
                     row1 = false;
@@ -28,7 +28,7 @@ public:
                     row3 = false;
                 }
 
-                println("1: {}, 2: {}, 3: {}", row1, row2, row3);
+                // println("1: {}, 2: {}, 3: {}", row1, row2, row3);
 
                 if (!row1 && !row2 && !row3){
                     break;
