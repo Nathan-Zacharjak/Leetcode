@@ -1,29 +1,29 @@
 class Solution {
 public:
     char findKthBit(int n, int k) {
-        // Recursive pattern: look at each half of the number as a simulation
-        // If the number is in the first index, it is 0
-        if (n == 1){
-            return '0';
+        // Start with the largest string 2^n - 1 , and halve it while k > 1 (base case)
+        // Keep track of the number of inversions done to the number before returning it
+        int size = (1 << n) - 1;
+        int invertCount = 0;
+
+        while (k > 1) {
+            // If k is in the middle, return the number, and flip if needed
+            if (k == size/2 + 1){
+                return invertCount % 2 == 0 ? '1' : '0';
+            }
+
+            // If k is in the first half, do nothing since the problem space will be halved
+            // If k is in the 2nd half, reverse k's position in the first half, and flip shouldInvert
+            if (k > size / 2){
+                k = size + 1 - k;
+                invertCount++;
+            }
+
+            // Look in the first half of the number
+            size /= 2;
         }
-        // Next dertermine the number's size by bit shifting 1 left, n times, equal to 2^n or n doublings, which each layer does
-        int size = 1 << n;
-        int middle = size/2;
-        // If the number is in the middle index, it is 1
-        if (k == middle){
-            return '1';
-        }
-        // If the number is in the first half, then recursely reduce the problem to just that part of the string
-        if (k < middle){
-            return findKthBit(n-1, k);
-        }
-        // If the number is in the second half, then recursively reduce the problem to just the first half of the string,
-        if (k > middle){
-            // but then invert the number
-            // and take into account the string being reversed, so look from the end of the first half
-            char flippedBit = findKthBit(n-1, size - k) == '1' ? '0' : '1';
-            return flippedBit;
-        }
-        return '0';
+
+        // If K is based off of the initial '0', then return based on shouldInvert
+        return invertCount % 2 == 0 ? '0' : '1';
     }
 };
