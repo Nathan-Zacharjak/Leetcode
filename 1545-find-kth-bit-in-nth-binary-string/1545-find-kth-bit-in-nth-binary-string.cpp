@@ -15,26 +15,13 @@ private:
         return s;
     };
 
-    // string BuildString(const string &lastString, const int &n){
-    //     // println("Last String: {}, n:{}", lastString, n);
-
-    //     if (n <= 0){
-    //         return lastString;
-    //     }
-
-    //     string inverted = invert(lastString);
-    //     reverse(inverted.begin(), inverted.end());
-
-    //     return BuildString(lastString + "1" + inverted, n-1);
-    // };
-
 public:
     char findKthBit(int n, int k) {
         string s = "0";
 
-        // s = BuildString(s, n-1);
-
         for (int i = 1; i < n; i++){
+            // string inverted = to_string(~stoi(s));
+
             string inverted = invert(s);
             reverse(inverted.begin(), inverted.end());
             s = s + "1" + inverted;
