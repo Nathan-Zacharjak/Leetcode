@@ -1,5 +1,3 @@
-// #include <print>
-
 class Solution {
 public:
     vector<string> findWords(vector<string>& words) {
@@ -15,8 +13,7 @@ public:
         for (const auto &word : words){
             for (const auto &c : word){
                 char lowerC = tolower(c);
-                // cout << c << endl;
-                // println("1: {}, 2: {}, 3: {}", row1, row2, row3);
+
 
                 if (!row1Chars.contains(lowerC)){
                     row1 = false;
@@ -27,8 +24,6 @@ public:
                 if (!row3Chars.contains(lowerC)){
                     row3 = false;
                 }
-
-                // println("1: {}, 2: {}, 3: {}", row1, row2, row3);
 
                 if (!row1 && !row2 && !row3){
                     break;
