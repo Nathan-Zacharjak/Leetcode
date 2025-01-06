@@ -125,3 +125,17 @@
 - The prefix sum could also be interpreted as the total number of groups so far
 - This only works if all array groups are *continuous*, e.g. adding "toast" to the end of the example would label "toast" in a different group to the other "breakfast" elements
 
+# 1545. Find Kth Bit in Nth Binary String
+## Simulated recursion
+- You don't have to explicitly do as the question describes for recursive problems!
+- You can "simulate" the problem by finding clever patterns in the recursive problem and base cases, but never actually calculate their values! (other than the base cases)
+- In this case, you only know about outright adding the numbers '0' and '1' in specific scenarios, and can return them when they show up, but now, you need to find a way to reduce the problem down into 'cases' which eventually lead to one of the 2 base cases!
+
+## Finding the number of doubles
+- To find the size of a number after n doubles, just bit shift 1 n times! i.e. 1 << n = 2^n
+
+## Converting recursive to iterative without DP
+- Converting recursive to iterative functions without using DP is hard, but one trick is to turn the base case into the condition of a while loop!
+- Then you may need to save a running number to keep track of the indexes you are searching through, rather than making a new recursive call with different arguments, e.g. the 'size' parameter in this function
+- You may also need to keep track of entirely new variables like 'invertCount', just to simulate what recursion was doing in terms of running the recursive calls in a necessary order.
+
