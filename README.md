@@ -125,6 +125,7 @@
 - The prefix sum could also be interpreted as the total number of groups so far
 - This only works if all array groups are *continuous*, e.g. adding "toast" to the end of the example would label "toast" in a different group to the other "breakfast" elements
 
+
 # 1545. Find Kth Bit in Nth Binary String
 ## Simulated recursion
 - You don't have to explicitly do as the question describes for recursive problems!
