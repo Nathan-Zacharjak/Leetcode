@@ -1,32 +1,29 @@
-// #include <algorithm>
-// #include <print>
-
 class Solution {
-private:
-    string invert(string s){
-        for (auto &c : s){
-            if (c == '1'){
-                c = '0';
-            } else {
-                c = '1';
-            }
-        }
-
-        return s;
-    };
-
 public:
     char findKthBit(int n, int k) {
-        string s = "0";
-
-        for (int i = 1; i < n; i++){
-            // string inverted = to_string(~stoi(s));
-
-            string inverted = invert(s);
-            reverse(inverted.begin(), inverted.end());
-            s = s + "1" + inverted;
+        // Recursive pattern: look at each half of the number as a simulation
+        // If the number is in the first index, it is 0
+        if (n == 1){
+            return '0';
         }
-
-        return s.at(k - 1);
+        // Next dertermine the number's size by bit shifting 1 left, n times, equal to 2^n or n doublings, which each layer does
+        int size = 1 << n;
+        int middle = size/2;
+        // If the number is in the middle index, it is 1
+        if (k == middle){
+            return '1';
+        }
+        // If the number is in the first half, then recursely reduce the problem to just that part of the string
+        if (k < middle){
+            return findKthBit(n-1, k);
+        }
+        // If the number is in the second half, then recursively reduce the problem to just the first half of the string,
+        if (k > middle){
+            // but then invert the number
+            // and take into account the string being reversed, so look from the end of the first half
+            char flippedBit = findKthBit(n-1, size - k) == '1' ? '0' : '1';
+            return flippedBit;
+        }
+        return '0';
     }
 };
