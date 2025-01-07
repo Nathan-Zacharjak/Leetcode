@@ -140,3 +140,22 @@
 - Then you may need to save a running number to keep track of the indexes you are searching through, rather than making a new recursive call with different arguments, e.g. the 'size' parameter in this function
 - You may also need to keep track of entirely new variables like 'invertCount', just to simulate what recursion was doing in terms of running the recursive calls in a necessary order.
 
+
+# 2379. Minimum Re-colours to Get K Consecutive Black Blocks
+## Sliding window
+- For edit distance-like problems, you may not have to jump straight to DP!
+- If a problem involves *consecutive* characters, that is where you should think of a "sliding window"!
+- A sliding window performs a brute force-like linear search through the problem, where you consider if any one possible window is a solution
+- However, in this problem, we actually need the minimum number, so we just take a running minimum as we're moving the window!
+- Your window does not have to stay at a fixed size! You can dynamically adjust your window and when it reaches a certain size, mark the window as an answer!
+- You can even initially grow your window up one by one to a certain size, and once it reaches a size, starts moving along! You can then add each front value, and take away each back value's cost as you go along to keep an accurate cost count for that window!
+
+
+# 202. Happy number
+## Tortoise & Hare algorithm (Cycle detection)
+- You can use a "Tortoise & Hare" algorithm for finding if there is a cycle in a linked list, or any potential cycle of values!
+- You make 2 pointers, then have a fast pointer move twice, for every time the slow pointer moves once
+- If they ever meet, you have a cycle
+- If the hare makes it to the end, you don't have a cycle
+- This is especially useful for detecting cycles in linked lists!
+
