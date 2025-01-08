@@ -9,7 +9,7 @@ private:
         return parent[node] = Find(parent[node], parent);
     }
 
-    void Union(const int &from, const int &to, vector<int> &parent, vector<int> &size){
+    void Union(const int &from, const int &to, vector<int> &parent, vector<int> &size, int &disjointSetCount){
         int parentFrom = Find(from, parent);
         int parentTo = Find(to, parent);
 
@@ -22,6 +22,8 @@ private:
                 parent[parentTo] = parentFrom;
                 size[parentFrom]++;
             }
+
+            disjointSetCount--;
         }
     }
 
@@ -43,25 +45,15 @@ public:
             size[i] = 1;
         }
 
+        // Count the number of unique values in parent to get the number of disjoint sets
+        int disjointSetCount = n;
+
         for (const auto &edge : connections){
             int from = edge[0];
             int to = edge[1];
 
             // For each connection, union every connection
-            Union(from, to, parent, size);
-        }
-
-        // Count the number of unique values in parent to get the number of disjoint sets
-        int disjointSetCount = 0;
-        vector<bool> visited(n, false);
-
-        for (int i = 0; i < n; i++){
-            int setNum = Find(i, parent);
-
-            if (!visited[setNum]){
-                visited[setNum] = true;
-                disjointSetCount++;
-            }
+            Union(from, to, parent, size, disjointSetCount);
         }
 
         // Return the number of disjoint sets -1
