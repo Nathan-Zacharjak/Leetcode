@@ -159,3 +159,38 @@
 - If the hare makes it to the end, you don't have a cycle
 - This is especially useful for detecting cycles in linked lists!
 
+
+# 287. Find the Duplicate Number
+## Sign marking
+- Travel through the numbers using the current number as the index for the next, and mark the numbers with negative signs as you go!
+- E.g. if [2,3,1] -> [-2,3,1] -> [-2,-3,1] for the first number 2, flip the number at index 2! (which is 3)
+- Then when you try to flip the sign of a number that is already negative, the index number must have been a duplicate!
+- *Only works for positive numbers!*
+
+## Pigeonhole principle
+- If you try to rearrange every number so each number goes into its equivalent index, e.g. [3,0,2,1,3] -> [0,1,2,3-3], you will eventually try to place a number in an index that is already taken!
+- So, if you start with an arbitrary index, then on placing the number, now move the number already in that index into its index, then move that number to its index and so on, until you find the duplicate!
+
+## Binary search
+- The trick is to count the number of elements less than or equal to a number in the array!
+- If this equals the number, then it is less than the duplicate, if it is greater, then it is equal to or greater than the duplicate!
+- This only works if there is only 1 number that is a duplicate (else you have to check for duplicates from the smallest number upwards, removing a value each time)
+- Then, you can just search the numbers greater than it, or just search the numbers less than it, depending on the value of lessThanOrEqualCount for that number!
+- (You build up count just using a linear scan running sum)
+- Once the search range is just one element, process that last number, and return the smallest number that had an unequal lessThanOrEqualCount to itself! (Using a running min)
+
+## Tortoise and Hare algorithm
+- Make a tortoise and hare pointer like usual
+- Let them go by repeatedly visiting the index of the current number
+- Eventually they meet
+- When they do, set the tortoise back to the start, and leave the hare at the intersection point
+- Make the hare now travel at the same speed as the tortoise, the maths checks out, they will now meet at *the* entry point in the cycle, which is the duplicate node!
+
+
+# 1319. Number of Operations to Make Network Connected
+## Using Union-Find to find the number of disjoint sets
+- You have to implement the Union() and Find() functions from memory, and remember to initialise a parent & rank size array, since C++ does not have an in-built implementation of Union-Find...
+- To count the number of disjoint sets, simply start a counter at the number of nodes in your graph
+- Then decrement this value by one every time Union() actually unions 2 sets!
+- Remember to initialise each value of size[i] to 1, and parent[i] to i
+
