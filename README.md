@@ -194,3 +194,45 @@
 - Then decrement this value by one every time Union() actually unions 2 sets!
 - Remember to initialise each value of size[i] to 1, and parent[i] to i
 
+# 2801. Count Stepping Numbers in Range
+## Digit DP Basics
+- When you are asked to find the count of numbers in a range that satisfy a certain property, this is digit DP!
+- The key thing is the count of numbers satisfying the property is given by: G(b) - G(a-1)
+- So the count of satisfying numbers from a to b is the count of satisfying numbers from 0 to b, minus the count of satisfying numbers from 0 to a-1
+- If you can solve the problem for just 0 to b, you can solve the whole problem!
+- So, it comes down to coming up with a recursive algorithm that solves the problem from 0 to n (even if the recursive algorithm times out!)
+- The other key thing is to have an array or string representation of your numbers!
+- (Btw, it is perfectly fine to use 64-bit numbers for any problem if really required! (long long) This normally wouldn't be the case for digit DP unless the output needs to be a number)
+- Digit DP tends to use a mix of recursion, *and* DP! It is essentially just recursion with memoisation, rather than transforming exponential recursion into a polynomial iterative function...
+
+## Digit DP Variables
+- You work your way from having 1 digit, to n digits (or the other way around for the recursive approach!)
+- You can look at numbers with less digits than max by adding leading zeros to match the number of digits max has to make the DP approach easier!
+- Index: The current index of the digit in the string to have a digit inserted (can be from left-to-right, or the other way around)
+- Tight: Whether the digits before the current digit match the max number or not. This signifies that the current digit can only go from 0 to max's digit at that index
+- E.g. If the max is 3245, and 32** have already been selected, the next digit can only go up to 4! I.e. 320* -> 324*, and 324*'s next digit is now tight! (up to 5)
+- The canonical and easy way to do this, is to do a left-to-right DP and set the first call to the recursive function to have tight=true, and pass the max number string!
+- Then, you can just calculate the max digit for that index to be max[index], and set nextTight to true if the current number is tight, and the current looped digit is equal to the max digit!
+
+## Digit DP Implementation
+- Typically the way digit DP is implemented is like this:
+- First is your base case, it could be when you have an empty string, reached the number of digits max has, all digits are 0s, when the current index is -1 or 0 or string.size(), depends on the problem!
+- Then, you check if the current DP iteration has already been calculated or not
+- Then you use the given value of tight, to determine if you are restricted up to max's digit at that index, or free to call the whole range of digits from 0 to 9
+- Then you calculate the new value of tight, for each of the digits, only the last digit in the range should have its tight value set to true in the recursive call
+- Then finally you make the recursive call from your last value (to go down to the base case), normally by doing res += recursiveFunc(lastIndex), a running sum of your result 
+- Then save your result into the DP array, and then return it!
+- Your DP array is normally 3 or 4 dimensions, and you use memset(dp, -1, sizeof(dp)); to initialise the DP array to all -1s
+- You could also simply look at the number of i-digit satisfying numbers ending in digit j, to give DP[i][j], and then implement the tight variable afterwards!
+
+
+# 233. Number of Digit One
+## Handling memory with digit DP
+- The size of the array at one dimension does not equal the maximum value of an integer stored there, merely the total number of values you will have to store for the largest size of the question! (You can think about the needed size either way, whichever is easier to understand!)
+- E.g. For the "tight" bool, you will always use 2,
+- For the index, you will always use the maximum length of the input number string (10^_ + 1, e.g. 10^9 = 10 digits, e.g. 10^0 has 1 digit)
+- For the result, you should be able to simply do a running sum off of the recursive call, e.g. int result = 0, result += DigitDPFunc()
+- For the count, you might not need it, and could maybe re-write your function so that it returns 0 or 1 in the base case, and add that number as +1 to the total number of valid numbers instead
+- However, you might need it when you have *stacking* running sums, like the total number of 1s in the numbers from 1 to n, so you need the max possible value of count in one recursive call tree, which is when every digit is 1, so if the max number of digits in the input is 10, the max number of 1s must also be 10!
+- If the problem returns an int, you should be able to use a DP array of ints, rather than long longs...
+
