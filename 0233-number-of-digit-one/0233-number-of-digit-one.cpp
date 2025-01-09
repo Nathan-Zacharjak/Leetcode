@@ -4,10 +4,10 @@ typedef long long ll;
 
 class Solution {
 private:
-    ll dpArray[10][2][100000];
+    int dpArray[10][2][10];
     // array<array<array<ll, 100000>, 2>, 9> dpArray;
 
-    ll DigitDP(string &max, short index, bool tight, int count){
+    int DigitDP(string &max, short index, bool tight, int count){
         // println("Max: {}, Index: {}, Tight: {}, count: {}", max, index, tight, count);
 
         if (index == max.size()){
