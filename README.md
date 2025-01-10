@@ -202,7 +202,7 @@
 - If you can solve the problem for just 0 to b, you can solve the whole problem!
 - So, it comes down to coming up with a recursive algorithm that solves the problem from 0 to n (even if the recursive algorithm times out!)
 - The other key thing is to have an array or string representation of your numbers!
-- (Btw, it is perfectly fine to use 64-bit numbers for any problem if really required! (long long) This normally wouldn't be the case for digit DP unless the output needs to be a number)
+- (BTW, it is perfectly fine to use 64-bit numbers for any problem if really required! (long long) This normally wouldn't be the case for digit DP unless the output needs to be a number)
 - Digit DP tends to use a mix of recursion, *and* DP! It is essentially just recursion with memoisation, rather than transforming exponential recursion into a polynomial iterative function...
 
 ## Digit DP Variables
@@ -235,4 +235,34 @@
 - For the count, you might not need it, and could maybe re-write your function so that it returns 0 or 1 in the base case, and add that number as +1 to the total number of valid numbers instead
 - However, you might need it when you have *stacking* running sums, like the total number of 1s in the numbers from 1 to n, so you need the max possible value of count in one recursive call tree, which is when every digit is 1, so if the max number of digits in the input is 10, the max number of 1s must also be 10!
 - If the problem returns an int, you should be able to use a DP array of ints, rather than long longs...
+
+
+# 552. Student Attendance Record II
+## Finding the recursive solution to DP
+- When you have a max number, instead of passing it and counting up indexes, try just passing the max, and decrement the max down to 0 as the base case, then return 1
+- To make iterative translation easier, don't use digit DP-style deciding on valid values and looping through them, instead try to check if you're outside the bounds at the start of each recursive call and return 0, using constant known bounds on passed variables into the function!
+- (Apparently, if you don't do this, you might miss the fact your recursive algorithm is going through already dead solutions! Returning from already seen solutions isn't enough! You need to check that your recursive solution is actually stopping itself from continuing down any dead solutions, and the best way to do this sometimes, is to handle dead solutions at the start of your function. Try this if you are TLE-ing with the recursive solution!)
+- When doing a DP problem, don't worry about passing by reference, or consts, since writing the state transitions in the recursive calls themselves makes translating to iterative DP easier!
+- When you have a modConst question, perform the mod each time you add to count, *and* when you add count's value to the DPArray! (Else you might overflow...)
+- For the final return value, try to cache to the dpArray and return at the same time! (Will also make iterative translation easier!)
+- You can use vector<vector<vector... as your DP array, which is harder to initialise than memset(), BUT it allows you to only set as much memory as you need at runtime! Just set the dpArray to a vector with sizes initialised, and don't forget to add 1 to the index size for the 0-index!
+- E.g. dpArray = vector<vector<vector<int>>>(n + 1, vector<vector<int>>(2, vector<int>(3,-1)));
+
+
+## Finding the iterative solution to DP
+- Typically, in the iterative version, you loop through the index in the reverse of what you did in the recursive solution. So that's why making your recursive solution start at n, and end at 0, makes the iterative solution translation much easier!
+- It might also be easier to think of the index variable as an outright sub-problem size variable! E.g. instead of "indexes left", call it "size"! Since you've divided the problem into independent sub-problems! (This will make it much easier to come up with the base cases)
+- So, you need to first nested loop through all recursion variables in order.
+- Then, you typically reverse the iteration for the index in each recursive call, e.g. index -1 becomes index +1
+- Then from there, you can just copy the implementation of the recursive algorithm, and replace the recursive calls with indexation into the DPArray! (usually no need to reverse the iterations for the non-index state variables)
+- You should be able to remove the cache check from the recursive algorithm, and remove the return from the return DPArray[][][] = result
+- Finally, you need to come up with the base cases, typically when index/size = 0. Remember that the solution needs to be possible given the parameters! (and that an empty string could count as a possible solution!)
+- So, set DPArray[0][0][0] to 1, to count the empty string as a possible solution if appropriate, and set all other values in DPArray[0] to 0, if they are not possible scenarios at all! (Even if the constraints don't allow index/size = 0!)
+- Then finally, make sure to initialise all other values of the DPArray to 0, (though in the iterative solution this is not strictly necessary!)
+- To calculate the result, you typically need to sum up all the counts of valid paths of the entirety of the last value of index/size of the DPArray, i.e. sum(DPArray[n][0 to max][0 to max]...)
+
+## Space optimising iterative DP
+- Simply print out your DPArray at each iteration and see if you can find a pattern that makes previous table values redundant!
+- Typically you only need DPArray[n] and DPArray[n-1], which you could store as prevDPState, and currentDPState!
+- Don't forget to reset the next DPArray state to 0s at the end of each index/size iteration!
 
