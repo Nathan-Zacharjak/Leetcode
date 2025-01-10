@@ -1,15 +1,13 @@
-// #include <print>
-
 class Solution {
 private:
     const int MOD = 1000000007;
     vector<vector<vector<int>>> dpArray;
 
     int RecordsCount(int charsLeft, int absentCount, int consecutiveLates) {
-        // println("Index: {}, WasAbsent: {}, consecutiveLates: {}", index, wasAbsent, consecutiveLates);
         if (absentCount == 2 || consecutiveLates == 3){
             return 0;
         }
+        
         if (charsLeft == 0) {
             return 1;
         }
