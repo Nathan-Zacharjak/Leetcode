@@ -1,14 +1,9 @@
-// #include <print>
-
 class Solution {
 private:
     int dpArray[10][2][2];
 
-    int DigitDP(const string &digits, const string &max, int index, bool tight, bool hasLeadingZeros, const int &maxSize, const int &digitsSize){
-        // println("Index: {}, Tight: {}", index, tight);
-
+    int DigitDP(const string &digits, const string &max, int index, bool tight, bool hasLeadingZeros, const int &digitsSize){
         if (index == max.size()){
-            // println("Returning {}...", hasLeadingZeros ? 0 : 1);
             return hasLeadingZeros ? 0 : 1;
         }
 
@@ -27,12 +22,9 @@ private:
                 break;
             }
 
-            // println("Going into digit: {}", nextDigit);
-            count += DigitDP(digits, max, index + 1, tight && nextDigit == maxDigit, nextDigit == '0', maxSize, digitsSize);
-            // println("Returning from digit: {}, Count: {}", nextDigit, count);
+            count += DigitDP(digits, max, index + 1, tight && nextDigit == maxDigit, nextDigit == '0', digitsSize);
         }
 
-        // println("Index: {}, Tight: {}, Returning count: {}", index, tight, count);
         dpArray[index][tight][hasLeadingZeros] = count;
         return count;
     }
@@ -46,12 +38,9 @@ public:
             digits_string.push_back(digit.at(0));
         }
 
-        // println("Digits String: {}, n String: {}", digits_string, n_string);
-
-        int maxSize = n_string.size();
         int digitsSize = digits_string.size();
 
         memset(dpArray, -1, sizeof(dpArray));
-        return DigitDP(digits_string, n_string, 0, true, true, maxSize, digitsSize);
+        return DigitDP(digits_string, n_string, 0, true, true, digitsSize);
     }
 };
