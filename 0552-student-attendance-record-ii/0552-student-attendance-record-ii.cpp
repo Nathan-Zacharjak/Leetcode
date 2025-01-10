@@ -1,92 +1,92 @@
+// #include <print>
+
+typedef long long ll;
+
 class Solution {
 private:
     const int MOD = 1000000007;
-    vector<vector<vector<int>>> dpArray;
+    // vector<vector<vector<ll>>> dpArray;
+    vector<vector<ll>> currDPState = vector<vector<ll>>(2, vector<ll>(3, 0));
+    vector<vector<ll>> nextDPState = vector<vector<ll>>(2, vector<ll>(3, 0));
 
-    int RecordsCount(int charsLeft, int absentCount, int consecutiveLates) {
-        if (absentCount == 2 || consecutiveLates == 3){
-            return 0;
-        }
-        
-        if (charsLeft == 0) {
-            return 1;
-        }
+    // int RecordsCount(int len, int absentCount, int consecutiveLates) {
+    //     if (absentCount == 2 || consecutiveLates == 3){
+    //         return 0;
+    //     }
 
-        if (dpArray[charsLeft][absentCount][consecutiveLates] != -1) {
-            return dpArray[charsLeft][absentCount][consecutiveLates];
-        }
+    //     if (len == 0) {
+    //         return 1;
+    //     }
 
-        long long count = 0;
+    //     if (dpArray[len][absentCount][consecutiveLates] != -1) {
+    //         return dpArray[len][absentCount][consecutiveLates];
+    //     }
 
-        // Choosing A
-        count += RecordsCount(charsLeft - 1, absentCount + 1, 0) % MOD;
-        // Choosing L
-        count += RecordsCount(charsLeft - 1, absentCount, consecutiveLates + 1) % MOD;
-        // Choosing P
-        count += RecordsCount(charsLeft - 1, absentCount, 0) % MOD;
+    //     long long count = 0;
 
-        return dpArray[charsLeft][absentCount][consecutiveLates] = count % MOD;
-    }
+    //     // Choosing A
+    //     count += RecordsCount(len - 1, absentCount + 1, 0) % MOD;
+    //     // Choosing L
+    //     count += RecordsCount(len - 1, absentCount, consecutiveLates + 1) % MOD;
+    //     // Choosing P
+    //     count += RecordsCount(len - 1, absentCount, 0) % MOD;
+
+    //     return dpArray[len][absentCount][consecutiveLates] = count % MOD;
+    // }
 
 public:
     int checkRecord(int n) {
-        // memset(dpArray, -1, sizeof(dpArray));
-        dpArray = vector<vector<vector<int>>>(n + 1, vector<vector<int>>(2, vector<int>(3, -1)));
+        // dpArray = vector<vector<vector<ll>>>(n + 1, vector<vector<ll>>(2, vector<ll>(3, 0)));
+        // dpArray[0][0][0] = 1;
+        currDPState[0][0] = 1;
 
-        // // A:
-        // // dpArray[n] = {{3,3,2},
-        // //               {2,2,1}};
-        // // dpArray[n][0] = {3,3,2};
-        // // dpArray[n][1] = {2,2,1};
-        // dpArray[n][0][0] = 3;
-        // dpArray[n][0][1] = 3;
-        // dpArray[n][0][2] = 2;
+        for (int len = 0; len < n; len++){
+            // println("len: {}", len);
 
-        // dpArray[n][1][0] = 2;
-        // dpArray[n][1][1] = 2;
-        // dpArray[n][1][2] = 1;
-        // // Transition: sum of all next allowed character's choices
-        // // Base Case: When you have a string of size 1, the number of choices
-        // // are as above depending on the values of wasAbsent & consecutiveLates as
-        // // indexes
+            // for (int i = 0; i < 2; i++){
+            //     for (int j = 0; j < 3; j++){
+            //         print("{}\t", currDPState[i][j]);
+            //     }
+            //     print("\n");
+            // }
 
-        // // Index
-        // for (int index = n - 1; index >= 0; index--) {
-        //     for (int wasAbsent = 0; wasAbsent < 2; wasAbsent++) {
-        //         for (int consecutiveLates = 0; consecutiveLates < 3; consecutiveLates++) {
-        //             string allowedChars = "P";
+            for (int absentCount = 0; absentCount <= 1; absentCount++){
+                for (int consecutiveLates = 0; consecutiveLates <= 2; consecutiveLates++){
+                    // Choosing A
+                    if (absentCount < 1){
+                        // nextDPState[len + 1][absentCount + 1][0] += currDPState[len][absentCount][consecutiveLates] % MOD;
+                        nextDPState[absentCount + 1][0] += currDPState[absentCount][consecutiveLates] % MOD;
+                    }
+                    // Choosing L
+                    if (consecutiveLates < 2){
+                        // nextDPState[len + 1][absentCount][consecutiveLates + 1] += currDPState[len][absentCount][consecutiveLates] % MOD;
+                        nextDPState[absentCount][consecutiveLates + 1] += currDPState[absentCount][consecutiveLates] % MOD;
+                    }
+                    // Choosing P
+                    // nextDPState[len + 1][absentCount][0] += currDPState[len][absentCount][consecutiveLates] % MOD;
+                    nextDPState[absentCount][0] += currDPState[absentCount][consecutiveLates] % MOD;
+                }
+            }
 
-        //             if (!wasAbsent) {
-        //                 allowedChars.push_back('A');
-        //             }
-        //             if (consecutiveLates < 2) {
-        //                 allowedChars.push_back('L');
-        //             }
+            currDPState = nextDPState;
+            // Reset the next DP state to 0!
+            nextDPState = vector<vector<ll>>(2, vector<ll>(3, 0));
+            // print("\n");
+        }
 
-        //             ll count = 0;
+        // println("len: {}", n);
 
-        //             for (const auto& nextChar : allowedChars) {
-        //                 count +=
-        //                     dpArray[index + 1][wasAbsent || nextChar == 'A']
-        //                            [nextChar == 'L' ? consecutiveLates + 1 : 0];
-        //             }
+        long long result = 0;
+        for (int i = 0; i < 2; i++){
+            for (int j = 0; j < 3; j++){
+                // print("{}\t", currDPState[i][j]);
+                result += currDPState[i][j] % MOD;
+            }
+            // print("\n");
+        }
 
-        //             dpArray[index][wasAbsent][consecutiveLates] = count;
-        //         }
-        //     }
-        // }
+        return result % MOD;
 
-        // int result = 0;
-        // for (int i = 0; i < 2; i++) {
-        //     for (int j = 0; j < 3; j++) {
-        //         print("{} ", dpArray[0][i][j]);
-        //         result += dpArray[0][i][j];
-        //     }
-        //     print("\n");
-        // }
-
-        // return result;
-
-        return RecordsCount(n, 0, 0);
+        // return RecordsCount(n, 0, 0);
     }
 };
