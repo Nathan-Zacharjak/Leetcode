@@ -266,3 +266,19 @@
 - Typically you only need DPArray[n] and DPArray[n-1], which you could store as prevDPState, and currentDPState!
 - Don't forget to reset the next DPArray state to 0s at the end of each index/size iteration!
 
+
+# 832. Flipping an image
+## Flipping a bit simply!
+- If you XOR a bit with 1, it flips it!
+- E.g. bit ^= 1; = flipped bit!
+
+# 205. Isomorphic Strings
+## Comparing the shape of 2 strings
+- It may be useful to replace each character of 2 strings to be compared, with the *index of the first occurrence of that character*
+- That way, you can tell if 2 strings are "isomorphic" i.e. have the same "shape" or pattern of characters that can be mapped 1-1 to each other
+
+## Comparing push_backed strings vs. vectors
+- You might get the wrong result if you push_back into a string rather than a vector if you are checking if they are equal!
+- You might get: "12345", when the result really was: [1,2,34,5]
+- This happens when pushing back integers or strings with multiple characters! *Use a vector instead!*
+
