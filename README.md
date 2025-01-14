@@ -319,3 +319,11 @@
 - HOWEVER, if you aren't given an adjacency list, and have to build one yourself, guess what? You now have to take into account the space complexity of the adjacency list! Therefore the space complexity becomes: O(n + m)!
 
 
+# 2937. Make Three Strings Equal
+## Longest matching prefix
+- To find the longest prefix contained in multiple strings, you just have to do 2 things:
+- 1. Find the minimum length string, can be found with min() using a list initialiser! E.g. min({s1.size(), s2.size(), s3.size()})
+- 2. Find the position of the first different character of all strings, which can easily be done with a while loop
+- The longest matching prefix are the characters up to that position in any string
+
+
