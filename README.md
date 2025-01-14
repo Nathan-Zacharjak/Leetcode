@@ -277,8 +277,19 @@
 - It may be useful to replace each character of 2 strings to be compared, with the *index of the first occurrence of that character*
 - That way, you can tell if 2 strings are "isomorphic" i.e. have the same "shape" or pattern of characters that can be mapped 1-1 to each other
 
+## Reversing an array
+- To save on an extra O(n) time calling vector.reverse, when you're doing more than just reversing an array it will save an extra +O(n) of non-asymptotic time doing the reversing with whatever else you are doing in the array in 1 loop!
+- To do this, use: "length -1 -i", to find the mirrored element in the array to swap with the ith element!
+- To iterate up to the middle element use: "(length + 1) / 2"! (Or length / 2 to ignore the middle element)
+
 ## Comparing push_backed strings vs. vectors
 - You might get the wrong result if you push_back into a string rather than a vector if you are checking if they are equal!
 - You might get: "12345", when the result really was: [1,2,34,5]
 - This happens when pushing back integers or strings with multiple characters! *Use a vector instead!*
+
+# 1926. Nearest Exit from Entrance in Maze
+## BFS visited marking
+- Instead of making a whole unordered_set to store the matrix coordinates already visited, you might be able to take advantage of the format of the input!
+- In this question, walls are marked with +, empty space marked with .
+- So, we can just mark coordinates as visited simply by changing a position's '.' with a '+'! And the BFS algorithm will automatically ignore it without using extra space!
 
