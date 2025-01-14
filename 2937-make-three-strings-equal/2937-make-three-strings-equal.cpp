@@ -12,13 +12,6 @@ public:
             index++;
         }
 
-        array<string, 3> strings = {s1, s2, s3};
-        int cost = 0;
-
-        for (const auto &s : strings){
-            cost += s.size() - index;
-        }
-
-        return cost;
+        return s1.size() + s2.size() + s3.size() -index*3;
     }
 };
