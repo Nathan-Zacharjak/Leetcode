@@ -327,3 +327,9 @@
 - The longest matching prefix are the characters up to that position in any string
 
 
+# 590. N-ary Tree Postorder Traversal
+## Iterative Pre/Post-order traversal
+- To convert recursive post-order tree traversal to iterative, you require using a stack to reverse the iterative result
+- So the space complexity (and time) is no better than just using the recursive implementation!
+
+
