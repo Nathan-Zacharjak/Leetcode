@@ -333,3 +333,9 @@
 - So the space complexity (and time) is no better than just using the recursive implementation!
 
 
+# 488. Zuma Game
+## Memoisation with unknown max states
+- You can use "serialisation" to allow for sneakily storing multiple input values in an unordered_map memo!
+- Using an unordered_map allows for caching with DP, when you don't know the max  number of possible values for every state variable! (Otherwise you just use memset() + a C array!)
+- This works if you can change each of your input variables into a string! Just transform each state variable into a string, concatenate a "#" between them (or some unused symbol), then use that string as the map's key!
+
