@@ -272,6 +272,7 @@
 - If you XOR a bit with 1, it flips it!
 - E.g. bit ^= 1; = flipped bit!
 
+
 # 205. Isomorphic Strings
 ## Comparing the shape of 2 strings
 - It may be useful to replace each character of 2 strings to be compared, with the *index of the first occurrence of that character*
@@ -287,9 +288,34 @@
 - You might get: "12345", when the result really was: [1,2,34,5]
 - This happens when pushing back integers or strings with multiple characters! *Use a vector instead!*
 
+
 # 1926. Nearest Exit from Entrance in Maze
 ## BFS visited marking
 - Instead of making a whole unordered_set to store the matrix coordinates already visited, you might be able to take advantage of the format of the input!
 - In this question, walls are marked with +, empty space marked with .
 - So, we can just mark coordinates as visited simply by changing a position's '.' with a '+'! And the BFS algorithm will automatically ignore it without using extra space!
+
+
+# 593. Valid Square
+## Finding the distance between 2 points
+- Remember you can find the "squared" distance between 2 points using dist = a^2 + b^2, which translates to this for 2 coordinate points: (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) (You don't need abs() because of the square!)
+- Typically, a dist(p1, p2) helper function is really useful here!
+
+## Sorting shape coordinates
+- You might be able to significantly narrow down the possible cases for a question with shapes by sorting the shape's coordinates first!
+- What you need to do for this question is sort the coordinates by x-coordinate first, then by y-coordinate in case of a tie!
+- Then you are only left with 3 shape possibilities! A right-tilted square, a left-tiled square, or a perfectly straight square!
+- Now you can traverse all sides of possible squares in an order that guarantees a line between point 0 and 1, and point 2 and 3 is a side of a square, and point 0 and 3, and point 1 and 2 form the diagonals of all 3 possible squares!
+- From there, you can just check that the distances between these points in a way that ensures both width and height of the square is of equal length, and the diagonals are of equal length too!
+
+## Using a set to check for equal lengths
+- You could alternatively use an unordered_set to store all lengths of all sides of the shape, and the 2 diagonals, and simply check that the size of the unordered_set is 2! (1 for the length of the sides, 1 for the length of the diagonals)
+- (This only works if the length of the diagonals can never equal the length of the sides, e.g. only integer lengths, no square roots!)
+
+
+# 2492. Minimum Score of a Path Between Two Cities
+## BFS space complexity
+- Breadth-first search has a space complexity of O(n), as you can have up to all graph nodes -1 in the queue at one time
+- HOWEVER, if you aren't given an adjacency list, and have to build one yourself, guess what? You now have to take into account the space complexity of the adjacency list! Therefore the space complexity becomes: O(n + m)!
+
 
