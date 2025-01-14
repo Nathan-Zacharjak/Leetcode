@@ -3,8 +3,8 @@
 class Solution {
 private:
     double dist(const vector<int> &p1, const vector<int> &p2){
-        int xDist = abs(p1[0] - p2[0]);
-        int yDist = abs(p1[1] - p2[1]);
+        int xDist = p1[0] - p2[0];
+        int yDist = p1[1] - p2[1];
 
         return (xDist * xDist) + (yDist * yDist);
     }
