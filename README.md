@@ -339,3 +339,25 @@
 - Using an unordered_map allows for caching with DP, when you don't know the max  number of possible values for every state variable! (Otherwise you just use memset() + a C array!)
 - This works if you can change each of your input variables into a string! Just transform each state variable into a string, concatenate a "#" between them (or some unused symbol), then use that string as the map's key!
 
+
+# 1582. Special Positions in a binary matrix
+## Handling coordinates
+- Don't use struct! Use pair<int,int>, or tuple<int,int,int>!
+
+## Direction vector grid searching
+- When grid searching one grid point at a time, create a "direction vector" or a "direction tuple"!
+- E.g. vector<pair<int,int>>dir = {{-1,0}, {1,0}, {0,-1}, {0,1}}
+- E.g. for 3D matrix grid: tuple<int,int,int>example; get<0>(example); get<1>(example)
+- This will make iterating in all cardinal directions from a single starting point much easier!
+
+
+# 1222. Queens That Can Attack the King
+## DFS grid searching
+- If you can afford to, you can speed up grid searching by search one cardinal direction at a time!
+- Instead of making a direction array, just double loop through -1, 0 and 1!
+- E.g. for int i = -1 to 1, for int j = -1 to 1
+- Then you can simply multiply these numbers by a multiplier "k" in a third loop!
+- E.g. for int k = 1 to 7 (for an 8x8 grid)
+- You can then multiply i and j by k, and add an origin to then search out from that origin!
+- This only works if if the grid is small, or you can break the k-loop as soon as you find something, else DFS may not be as efficient as BFS, depends on the problem!
+
