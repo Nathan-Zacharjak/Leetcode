@@ -1,37 +1,32 @@
 class Solution {
 public:
     vector<vector<int>> queensAttacktheKing(vector<vector<int>>& queens, vector<int>& king) {
-        unordered_set<string> queenSet;
-        for (const auto &queen : queens){
-            queenSet.insert(to_string(queen[0]) + to_string(queen[1]));
+        array<array<bool, 8>, 8> queenSet;
+        for (const auto & queen : queens){
+            queenSet[queen[0]][queen[1]] = true;
         }
 
-        vector<vector<int>> directions = {{0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}, {-1,-1}, {-1,0}, {-1,1}};
-        // N, NE, E, SE, S, SW, W, NW
-        array<bool, 8> blockedDirections = {false};
-        int blockedCount = 0;
-        vector<vector<int>> unblockedQueens;
+        vector<vector<int>> result;
 
-        for (int i = 1; i < 8; i++){
-            for (int dirIndex = 0; dirIndex < 8; dirIndex++){
-                if (blockedDirections.at(dirIndex)){
-                    if (blockedCount == 8){
-                        return unblockedQueens;
+        for (int i = -1; i < 2; i++){
+            for (int j = -1; j < 2; j++){
+                for (int k = 1; k < 8; k++){
+                    int x = king[0] + (i * k);
+                    if (x > 7 || x < 0){
+                        break;
                     }
-                    continue;
-                }
-                int x = directions[dirIndex][0] * i + king[0];
-                int y = directions[dirIndex][1] * i + king[1];
-                string coords = to_string(x) + to_string(y);
-
-                if (queenSet.contains(coords)){
-                    blockedDirections.at(dirIndex) = true;
-                    blockedCount++;
-                    unblockedQueens.push_back({x, y});
+                    int y = king[1] + (j * k);
+                    if (y > 7 || y < 0){
+                        break;
+                    }
+                    if (queenSet[x][y]){
+                        result.push_back({x,y});
+                        break;
+                    }
                 }
             }
         }
-
-        return unblockedQueens;
+        
+        return result;
     }
 };
