@@ -376,3 +376,18 @@
 - You might not be able to sort the final string if it involves editing an input string, but instead, just sort the order of the characters you input into it!
 
 
+# 2217. Find Palindrome With Fixed Length
+## Size of 1st half, rounded up!
+- You can get the first half of a string rounded down easily, just take the first size/2 characters!
+- But for rounded up, so 5/2 = 3, then you need to take the first (size + 1)/2 characters!
+- E.g. int size = 5; int sizeOf1stHalf = (size + 1) / 2;
+
+## String numbers
+- Only use string numbers when necessary! Keeping numbers as numbers when they can fit in a long long is normally faster than string operations!
+
+## Non-string integer reversal
+- You can use /= 10 and % 10 to reverse an integer if it is small enough to fit in an int!
+- No need to turn the int into a string!
+- This only works if you know the number of digits in the number to start with! Because you need to check if it has an even or odd number of digits!
+
+
