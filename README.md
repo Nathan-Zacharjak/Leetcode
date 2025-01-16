@@ -361,3 +361,11 @@
 - You can then multiply i and j by k, and add an origin to then search out from that origin!
 - This only works if if the grid is small, or you can break the k-loop as soon as you find something, else DFS may not be as efficient as BFS, depends on the problem!
 
+
+# 877. Stone Game
+## 2-player DP
+- For questions about 2 players and asking who will win, a neat trick is to not store the 2 player's score's separately
+- Instead, store one score, and add when player 1 gains score, and minus when player 2 gains score!
+- This allows you to store a single value (the current score) in a DP array, to minimise your state variables!
+- You then need to, in your recursive relation, make sure that when it's player 1's turn, to try to *maximise* their score from previous DP states, and for player 2 to *minimise* their score from previous DP states!
+
