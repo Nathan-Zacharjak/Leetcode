@@ -389,5 +389,3 @@
 - You can use /= 10 and % 10 to reverse an integer if it is small enough to fit in an int!
 - No need to turn the int into a string!
 - This only works if you know the number of digits in the number to start with! Because you need to check if it has an even or odd number of digits!
-
-
