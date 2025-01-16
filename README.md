@@ -369,3 +369,10 @@
 - This allows you to store a single value (the current score) in a DP array, to minimise your state variables!
 - You then need to, in your recursive relation, make sure that when it's player 1's turn, to try to *maximise* their score from previous DP states, and for player 2 to *minimise* their score from previous DP states!
 
+
+# 3081. Replace Question Marks in String to Minimize Its Value
+## Lexicographically smallest string tiebreaker
+- When tie-breaking multiple correct string answers with the "Lexicographically smallest" one, just sort the string!
+- You might not be able to sort the final string if it involves editing an input string, but instead, just sort the order of the characters you input into it!
+
+
