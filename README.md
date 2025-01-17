@@ -389,3 +389,17 @@
 - You can use /= 10 and % 10 to reverse an integer if it is small enough to fit in an int!
 - No need to turn the int into a string!
 - This only works if you know the number of digits in the number to start with! Because you need to check if it has an even or odd number of digits!
+
+
+# 432. All O`one Data Structure
+## Keeping track of incremental maxs/mins
+- A doubly linked list is great at keeping track of the max/min so far
+- Combined with a hashmap of a key to its node in the linked list of frequencies (where each node also contains a hashset of all keys with that value), you can keep track of the counts of each key inserted so far in O(1) time!
+- So long as incrementing and decrementing is only +1/-1 at a time, you can carefully implement this map + doubly linked list to get O(1) average time complexity for all operations!
+- (IncrementKey1, DecrementKey1, GetMax, GetMin)
+
+## Maps of sets, and sets of maps!
+- You can have a map contain sets as values, and sets contain maps as values!
+- (You just can't have a set be a map's key, or a map be a set's key...)
+
+
