@@ -403,3 +403,50 @@
 - (You just can't have a set be a map's key, or a map be a set's key...)
 
 
+# 1280. Students and Examinations
+## SQL Cross Join
+- "Cross Join" is actually useful in SQL! When you are counting the number of records with types of labels, where there may be labels with no records!
+- Cross join lets you generate all possible combinations of an ID (e.g. student) and each possible label! (E.g. subject)
+
+## SQL "And" joins
+- You can use "AND" in joins!
+- This makes it so for a record to show, it has to match 2 different IDs!
+- E.g. student_id AND subject_name
+
+## SQL Multiple value "Group By"
+- GROUP BY can contain more than 1 value
+- When it does, it will condense multiple records that have the same value for ALL given columns into 1 group
+- You can then COUNT() or SUM(), or use some other "aggregate" function to count the number groups or otherwise
+- Basically, if you're wanting to use WHERE with COUNT(), you're probably looking for GROUP BY!
+- In the COUNT() or whatever function, you will have to count the number of some kind of ID that you have GROUP'ed BY, in a different table than you have selected! E.g. Examinations.student_id, not Students.student_id!
+
+## SQL Left/right joins
+- LEFT JOIN adds all of the first table's records, regardless if there is a matching ID in the second table or not
+- RIGHT JOIN adds all of the second table's records, regardless if there is a matching ID in the first table or not
+- If you combine a CROSS JOIN with a LEFT JOIN, you will find all combinations that don't exist in the second table, these records will have IDs with NULL values
+- If you then COUNT() and GROUP BY, you will find the total number of records for every group of records with the same column values (that you specify in GROUP BY), that exist
+
+## SQL quick table name aliases
+- You can just type "FROM Students s", which will allow you to use "s" as an alias for the table "Students"
+- This will save a lot of typing! e.g. SELECT s.student_id, s.student_name FROM Students s
+
+
+# 1239. Maximum Length of a Concatenated String with Unique Characters
+## Bitset duplicate char detection
+- Bit sets are great for unique string problems!
+- If you only need a 26 size bool vector to check for duplicate characters, just use a bitset<26>!
+- You can use bs.set(4) to set the 4th bit to true (and bs.unset(4) to unset)
+- Using bitsets will handle all the << >> &, etc operations for you as if you were just using a single 32-bit int! (Check the docs for the max size of a bitset, probably 64)
+- You can then do a cool trick for finding a string with duplicate characters, just set each bit to true for every character's ASCII code - 'a'
+- Then check if the count of set bits (bs.count()) equals the number of characters int the string! (s.size()) i.e. bs.count == s.size()
+
+## All in-order permutations of array elements
+- If you're trying to find all permutations of an array, where you only want the permutations of array elements in order (skipping elements allowed), there's a neat iterative approach!
+- Initialise a "DP" array of sets, starting with 1 empty set
+- Then iterate over each array element
+- Then if your array element passes criteria, iterate over all elements in the set array
+- It is better to iterate over all DP array elements in reverse order, as this will maximise the depth of the last element in the DP array (but it may not matter depending on the question)
+- If the union is valid, union the current set with the current DP array set, and add it to the DP array of sets!
+- Then keep a running sum, max, etc, so far for the current union, or simply count the number of permutations after iterating over all input array elements! (Whatever the question asks)
+- This only works for sets with a limited number of values, or input arrays with a limited size! (Else, the usual DFS backtracking approach works well here)
+
