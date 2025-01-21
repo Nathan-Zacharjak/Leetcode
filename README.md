@@ -462,3 +462,12 @@
 - The head node represents the empty string, if its isWord flag is set to true!
 
 
+# 2085. Count Common Words With One Occurrence
+## Helper functions
+- If you're making a helper function to avoid iterating over 2 arrays one at a time, it might be faster to just iterate one at a time, if the loops are very simple!
+
+## Simplifying the solution
+- Don't be afraid to go with your gut instinct for an easy question, just make the brute force and simplify from there!
+- Spend time making sure you're answering the right question, rather than worrying about complexity to start with!
+
+
