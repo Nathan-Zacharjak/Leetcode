@@ -450,3 +450,15 @@
 - Then keep a running sum, max, etc, so far for the current union, or simply count the number of permutations after iterating over all input array elements! (Whatever the question asks)
 - This only works for sets with a limited number of values, or input arrays with a limited size! (Else, the usual DFS backtracking approach works well here)
 
+
+# 208. Implement Trie (Prefix Tree)
+## Trie node storage
+- Instead of storing the current letter as a char in a node, you can just store a "children" array with 26 indexes! (If only lowercase English characters, else use a map from char to Node*)
+- Then using the ASCII trick, you can create a new node inside the corresponding index of the children array, based on the current letter you are inserting!
+- You can then tell if it's the end of a word by adding a isWord bool flag to each node
+- And that the word is not in the prefix tree if the current char in word does not have a corresponding child in the current node!
+- Then to initilise the Trie, just create an empty head node! All prefix tree nodes start off with an empty children array/map!
+- It's the connection between the current node and its child that represents a character, not a character value in the node itself!
+- The head node represents the empty string, if its isWord flag is set to true!
+
+
