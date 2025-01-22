@@ -1,7 +1,7 @@
 class Solution {
 private:
-    random_device rd;
-    mt19937 gen;
+    // random_device rd;
+    // mt19937 gen;
 
     bool shouldGoBeforePivot(const int& num, const int& pivot){
         return to_string(num) + to_string(pivot) > to_string(pivot) + to_string(num);
@@ -9,12 +9,14 @@ private:
 
     int partition(vector<int>& nums, const int& start, const int& end){
         // choose a uniformly random pivot (from start to end)
-        uniform_int_distribution<> dist(start, end);
-        int pivot = dist(gen);
+        // uniform_int_distribution<> dist(start, end);
+        // int pivot = dist(gen);
+        int pivot = end;
 
         // partition nums so all numbers that make bigger numbers when on the left of pivot are left of the pivot,
         // and all nums that make bigger numbers on the right of the pivot are on the right
         int pivotNum = nums[pivot];
+
         // Shove pivot onto the end of the partition,
         swap(nums[end], nums[pivot]);
         // Save the last index containing a smaller number than pivot
@@ -60,7 +62,7 @@ public:
         return result[0] == '0' ? "0" : result;
     }
 
-    Solution(){
-        mt19937 gen = mt19937(rd());
-    }
+    // Solution(){
+    //     mt19937 gen = mt19937(rd());
+    // }
 };
