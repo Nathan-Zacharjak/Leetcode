@@ -1,5 +1,3 @@
-#include <print>
-
 class Solution {
 private:
     random_device rd;
@@ -13,7 +11,6 @@ private:
         // choose a uniformly random pivot (from start to end)
         uniform_int_distribution<> dist(start, end);
         int pivot = dist(gen);
-        println("start: {}, end: {}, pivot: {}", start, end, pivot);
 
         // partition nums so all numbers that make bigger numbers when on the left of pivot are left of the pivot,
         // and all nums that make bigger numbers on the right of the pivot are on the right
@@ -67,19 +64,3 @@ public:
         mt19937 gen = mt19937(rd());
     }
 };
-
-// string largestNumber(vector<int>& nums) {
-//     vector<string> numsStr;
-//     bool containsNonZero = false;
-//     for (const auto& num: nums){
-//         numsStr.push_back(to_string(num));
-//         if (num != 0){
-//             containsNonZero = true;
-//         }
-//     }
-//     if (!containsNonZero) return "0";
-//     sort(numsStr.begin(), numsStr.end(), [](string& a, string& b){ return a + b > b + a;});
-//     string result;
-//     for (const auto& numStr: numsStr) result += numStr;
-//     return result;
-// }
