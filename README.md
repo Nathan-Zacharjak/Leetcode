@@ -471,3 +471,19 @@
 - Spend time making sure you're answering the right question, rather than worrying about complexity to start with!
 
 
+# 179. Largest Number
+## Finding the largest concatenation between 2 numbers
+- First, change both numbers into strings
+- Then make both possible concatenations of both numbers, first number then second, and second number then first
+- See which number in both concatenations are larger
+- Sort the 2 numbers by which concatenation was larger!
+- Finally, if you have an array of these numbers, sort them by this criteria, then loop through the sorted array and concatenate all elements in order in the array!
+
+## Lexicographical string number comparison
+- You can compare 2 numbers as ints with < or >, even if the numbers are strings!
+
+## Space complexity of std::sort()
+- std::sort() has a space complexity greater than O(1)! (Even if sorting in-place!)
+- This extra space comes from the Quick-Heap-Insertion sort hybrid c++'s sort() function uses!
+- The space complexity is O(log n) (The time complexity is obviously O(n log n))
+
