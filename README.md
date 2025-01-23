@@ -487,3 +487,20 @@
 - This extra space comes from the Quick-Heap-Insertion sort hybrid c++'s sort() function uses!
 - The space complexity is O(log n) (The time complexity is obviously O(n log n))
 
+
+# 30. Substring with Concatenation of All Words
+## Comparing big string to small strings *of same length* (No sliding window O(n^3))
+- Instead of copying a frequency map for each iteration, just slowly build one up, by counting upwards each time there is a match, and compare that count with the original frequency map!
+- Try to make a helper function to check if a valid starting index is a valid substring!
+- You know that each valid substring is going to be the length of a small string * the number of small strings!
+- Sometimes making a hashmap and saving potential starting indexes is a bad idea... There might not be saving any time by caching potential answers, if you have to quadratically search through a string to find the potential answers anyway!
+- Instead of iterating (to the end of the string - some constraint size) at the end of each loop, just iterate from the starting index, up until (the starting index + max answer size)! (It will save a lot of time!)
+
+## Comparing big string to small strings of *same length* (Sliding window, O(n^2)!)
+- This method runs independently of the number of smaller strings you have!
+- Sliding window method to comparing a big string to many smaller strings *only works if the smaller strings are all the same size!*
+- The key thing is to move the left sliding window pointer, until there isn't an "excess" word any more!
+- As soon as an excess word is encountered, you have to keep moving the sliding window's left side until the excess word's count is under the limit
+- If an invalid word is encountered, you have to move the sliding window's left and right pointers to the next potential word, 1 word after the right pointer's current position
+- You only need to set off the sliding window from index 0 to wordSize amount of times! This is because you only need to try each offset of the sliding window once! E.g. for index wordSize + 1, the sliding window looks at the same sets of characters as index 0, except for the first potential word
+
