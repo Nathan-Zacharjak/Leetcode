@@ -1,84 +1,45 @@
-#include <print>
-
 class Solution {
 public:
     string minWindow(string s, string t) {
-        unordered_map<char, int> freqMap;
-        for (const auto& c: t) freqMap[c]++;
+        vector<int> fm(128, 0);
+        for (const auto& c: t) fm[c]++;
 
-        for (const auto& [c, count]: freqMap){
-            println("Char: {}, count: {}", c, count);
-        }
-
-        int sSize = s.size();
-        int tSize = t.size();
         int left = 0;
         int right = 0;
-        int validChars = 0;
-
-        unordered_map<char, int> windowFreq;
+        int missingChars = t.size();
         int minLeft = 0;
-        int minRight = sSize;
-
-        println("sSize: {}, tSize: {}", sSize, tSize);
+        int sSize = s.size();
+        int minSize = sSize + 1;
 
         while (right < sSize){
-            println("\nl:{}, r:{}, minLeft: {}, minRight: {}, validChars: {}, windowFreq:", left, right, minLeft, minRight, validChars);
+            // If we haven't already fully withdrawn all of this character from the bank, and it exists in the bank in the first place,
+            // then we can mark off another missing character found from t
+            if (fm[s[right]] > 0) missingChars--;
+            // If char already has been fully taken from the bank, this will be made up for with negative numbers
+            fm[s[right]]--;
+            right++;
 
-            for (const auto& [c, count]: windowFreq){
-                println("Char: {}, count : {}", c, count);
-            }
-
-            if (freqMap.contains(s[right])){
-                println("Right match: {}, r:{}", s[right], right);
-
-                windowFreq[s[right]]++;
-                validChars++;
-
-                while (windowFreq[s[right]] > freqMap[s[right]]){
-                    if (freqMap.contains(s[left])){
-                        println("Removing excess char: {}", s[left]);
-
-                        windowFreq[s[left]]--;
-                        validChars--;
-                    }
-                    left++;
-                }
-
-                while (!freqMap.contains(s[left])){
-                    println("Removing excess left char at index: {}", left);
-
-                    left++;
-                }
-
-                println("Valid chars: {}, tSize: {}, should update range: {}", validChars, tSize, validChars == tSize);
-                println("Old range: {}, current range: {}", minRight - minLeft, right - left);
-
-                if (validChars == tSize && right - left < minRight - minLeft){
-                    minRight = right;
+            // If current window has made it so there are no chars left to find, it is valid!
+            // We can now start incrementing the left pointer
+            while (missingChars == 0){
+                // First we need to add the current result, if it is smaller than the last
+                if (right - left < minSize){
                     minLeft = left;
-
-                    println("New minRight: {}, minLeft: {}!", minRight, minLeft);
-                    if (right - left == tSize - 1) return s.substr(minLeft, minRight - minLeft + 1);
-                }
-            }
-
-             println("Should move left: {}, right - left: {}, minRight - minLeft: {}", right - left >= minRight - minLeft, right - left, minRight - minLeft);
-
-            if (right - left >= minRight - minLeft){
-                if (freqMap.contains(s[left])){
-                    validChars--;
-                    windowFreq[s[left]]--;
+                    minSize = right - left;
                 }
 
+                // Add a count to the frequency map for the character we're about to leave, since we will need another of this character later
+                fm[s[left]]++;
+
+                // Next, since the bank will have very negative values for invalid chars, the bank count for the left char should only be
+                // positive if it was a valid char
+                if (fm[s[left]] > 0) missingChars++;
+                
+                // Finally, we can increment the left pointer
                 left++;
             }
-            right++;
         }
 
-        println("minR:{}, minL{}", minLeft, minRight);
-        if (minLeft == 0 && minRight == sSize) return "";
-
-        return s.substr(minLeft, minRight - minLeft + 1);
+        return minSize == sSize + 1 ? "" : s.substr(minLeft, minSize);
     }
 };
