@@ -10,7 +10,7 @@ public:
 
         int charsLeft = 0;
 
-        for (int i = 0; i < sCount.size(); i++){
+        for (int i = 0; i < 26; i++){
             if (sCount[i] > 0){
                 charsLeft += sCount[i];
             }
