@@ -1,19 +1,19 @@
-// #include <print>
-
 class Solution {
 public:
     int minSteps(string s, string t) {
         vector<int> sCount(26, 0);
-        for (const auto& c: s) sCount[c - 'a']++;
 
-        int charsLeft = s.size();
+        for (int i = 0; i < s.size(); i++){
+            sCount[s[i] - 'a']++;
+            sCount[t[i] - 'a']--;
+        }
 
-        for (const auto& c: t){
-            if (sCount[c - 'a'] > 0){
-                sCount[c - 'a']--;
-                charsLeft--;
+        int charsLeft = 0;
+
+        for (int i = 0; i < sCount.size(); i++){
+            if (sCount[i] > 0){
+                charsLeft += sCount[i];
             }
-            // println("c: {}, sCount: {}, charsLeft: {}", c, sCount[c - 'a'], charsLeft);
         }
 
         return charsLeft;
