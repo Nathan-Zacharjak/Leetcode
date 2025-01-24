@@ -2,17 +2,18 @@ class Solution {
 public:
     int minSteps(string s, string t) {
         vector<int> sCount(26, 0);
+        int a = 'a';
 
         for (int i = 0; i < s.size(); i++){
-            sCount[s[i] - 'a']++;
-            sCount[t[i] - 'a']--;
+            sCount[s[i] - a]++;
+            sCount[t[i] - a]--;
         }
 
         int charsLeft = 0;
 
-        for (int i = 0; i < 26; i++){
-            if (sCount[i] > 0){
-                charsLeft += sCount[i];
+        for (const auto& count: sCount){
+            if (count > 0){
+                charsLeft += count;
             }
         }
 
