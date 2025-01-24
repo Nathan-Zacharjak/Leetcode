@@ -1,21 +1,25 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        string answer;
         unordered_map<char, int> sCount;
         for (const auto c: s) sCount[c]++;
 
-        vector<string> countToChars(s.size() + 1);
+        string uniqueChars;
 
         for (const auto& [c, count]: sCount){
-            countToChars[count].push_back(c);
+            uniqueChars += c;
         }
 
-        for (int i = s.size(); i > 0; i--){
-            for (const auto& c: countToChars[i]){
-                for (int j = 0; j < i; j++){
-                    answer += c;
-                }
+        sort(uniqueChars.begin(), uniqueChars.end(), [&sCount](const auto& c1, const auto& c2){
+            return sCount[c1] > sCount[c2];
+        });
+
+        string answer;
+
+        for (const auto& c: uniqueChars){
+            while (sCount[c] > 0){
+                answer += c;
+                sCount[c]--;
             }
         }
 
