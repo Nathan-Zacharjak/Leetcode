@@ -504,3 +504,23 @@
 - If an invalid word is encountered, you have to move the sliding window's left and right pointers to the next potential word, 1 word after the right pointer's current position
 - You only need to set off the sliding window from index 0 to wordSize amount of times! This is because you only need to try each offset of the sliding window once! E.g. for index wordSize + 1, the sliding window looks at the same sets of characters as index 0, except for the first potential word
 
+
+# 13. Roman to Integer
+## Map -> Switch statement!
+- If the input is limited enough, it might be worth replacing a map with a switch statement
+- Always consider if a map can be replaced by a switch statement! If your logic is simple, it may be doable, and you save the map's space, AND the time to build the map!
+
+
+# 2250. Count Number of Rectangles Containing Each Point
+## Binary Search constraints
+- If the constraints are one number is very large, but another related number is very small, e.g. coordinates, you're probably wanting to do binary search!
+
+## Shapes with one short length
+- You can map all the shapes with the same shorter length, and contain a set of all the shapes with that length!
+- In the case of a rectangle, you could map all rectangles of a certain height, to all the widths with that height!
+- From there, you can do something like sort the widths for each height and perform binary search!
+
+## Getting the middle index for binary search
+- To get the middle index for binary search, do: middle = left + (right - left)/2
+- This means you have ignored everything on the left of left, and are now looking at the middle element on the right hand side
+
