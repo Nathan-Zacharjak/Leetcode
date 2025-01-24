@@ -531,3 +531,16 @@
 - And finally, it returns an iterator to the first value in that container that that is equal to or greater than the target value!
 - i.e... A lower bound!
 
+
+# 451. Sort Characters By Frequency
+## Sorting by frequency
+- The easiest way to sort by frequency, is to first count the frequencies of your container
+- Then, simply place the keys of the frequency map into an array, and sort the array based on the frequencies!
+- Then you can re-create the array by looping through all sorted keys, and repeatedly adding the key as many times as it appears in the frequency map to the final sorted-by-frequency array!
+
+## Bucket sort
+- Buuut... an even better way to sort elements by frequency, is to use bucket sort!
+- Bucket sort is one of the few sorting algorithms with O(n) time, buuuuut it usually comes at a hefty cost of space!
+- Bucket sort places keys based on their values, basically a reverse map, but sorted in O(n) time!
+- Most useful when wanting to sort a map by value with a lot of keys, but not many possible values!
+
