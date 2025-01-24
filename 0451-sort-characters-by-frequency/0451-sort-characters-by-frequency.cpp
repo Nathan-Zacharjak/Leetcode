@@ -1,11 +1,28 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        unordered_map<char, int> sCount;        
+        unordered_map<char, int> sCount;
         for (const auto c: s) sCount[c]++;
-        sort(s.begin(), s.end(), [&sCount](const auto& c1, const auto& c2){
-            return sCount[c1] > sCount[c2] || (sCount[c1] == sCount[c2] && c1 < c2);
+
+        string uniqueChars;
+
+        for (const auto& [c, count]: sCount){
+            uniqueChars += c;
+        }
+
+        sort(uniqueChars.begin(), uniqueChars.end(), [&sCount](const auto& c1, const auto& c2){
+            return sCount[c1] > sCount[c2];
         });
-        return s;
+
+        string answer;
+
+        for (const auto& c: uniqueChars){
+            while (sCount[c] > 0){
+                answer += c;
+                sCount[c]--;
+            }
+        }
+
+        return answer;
     }
 };
