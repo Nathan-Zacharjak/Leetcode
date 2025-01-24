@@ -1,4 +1,4 @@
-#include <print>
+// #include <print>
 
 class Solution {
 private:
@@ -36,12 +36,12 @@ public:
             sort(hToW.at(i).begin(), hToW.at(i).end());
         }
 
-        for (int i = 1; i <= 5; i++){
-            println("\nHeight: {}, widths:", i);
-            for (const auto& width: hToW.at(i)){
-                print("{} ", width);
-            }
-        }
+        // for (int i = 1; i <= 5; i++){
+        //     println("\nHeight: {}, widths:", i);
+        //     for (const auto& width: hToW.at(i)){
+        //         print("{} ", width);
+        //     }
+        // }
 
         for (const auto& point: points){
             int x = point[0];
