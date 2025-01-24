@@ -524,3 +524,10 @@
 - To get the middle index for binary search, do: middle = left + (right - left)/2
 - This means you have ignored everything on the left of left, and are now looking at the middle element on the right hand side
 
+## Binary search with "std::lower_bound()"
+- You can perform an easy binary search by using std::lower_bound()!
+- Basically, you pass the 2 iterators to an container with sorted values...
+- Then, you give the target value as the 3rd argument...
+- And finally, it returns an iterator to the first value in that container that that is equal to or greater than the target value!
+- i.e... A lower bound!
+
