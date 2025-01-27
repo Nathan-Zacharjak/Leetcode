@@ -17,7 +17,7 @@ private:
         if (xDepth != -1 && yDepth != -1){
             return xDepth == yDepth && xParent != yParent;
         }
-        if (node == nullptr){
+        if (node == nullptr || (xDepth != -1 && depth > xDepth) || (yDepth != -1 && depth > yDepth)){
             return false;
         }
 
