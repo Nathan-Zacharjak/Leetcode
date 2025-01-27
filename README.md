@@ -544,3 +544,18 @@
 - Bucket sort places keys based on their values, basically a reverse map, but sorted in O(n) time!
 - Most useful when wanting to sort a map by value with a lot of keys, but not many possible values!
 
+
+# 2032. Two Out of Three
+## Counts from multiple arrays, and limited possible values to count
+- If creating a value bank for more than one array at once, it may be more space efficient to use a 2D vector where the first index is the array number, and the second index is the count of that number in the array, where the index represents the number!
+- If your output is very limited, e.g. there's only 101 possible numbers to have to count, just use a vector of size 101!
+- When the values to count are integers, and the number of possible values is low, just use a vector of vectors!
+
+## Seeing if a value is contained between x number of containers
+- If all you're seeing is if a value is contained within a set of containers, *don't count! Just use a bool!*
+
+## Bool vector to bitmask
+- While the compiler will optimise a bool vector to a bit mask, you can directly use a bitmask when the approach is simple!
+- If you have many 3-long bool vectors, just have 1 vector of ints, initialised to 0, and bit-push 1 to the left 0, 1, or 2 times if the number appears in vector 0, 1, or 2!
+
+
