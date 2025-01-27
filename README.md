@@ -568,3 +568,10 @@
 - If ever you are trying to compare values between a layer of a tree, *use BFS!*
 - Level-order traversal is much more natural for any problem involving comparing the values of the layer of a tree!
 
+
+# 1722. Minimize Hamming Distance After Swap Operations
+## Infinite array swapping
+- If you are allowed to swap values in an array an infinite number of times, in any order, *you don't have to simulate the swapping!*
+- Just use a DSU to get the different sets of elements that can be swapped between each other!
+
+
