@@ -1,5 +1,3 @@
-// #include <print>
-
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -12,47 +10,47 @@
  * };
  */
 class Solution {
-private:
-    bool traverseTree(TreeNode* node, const int& x, const int& y, TreeNode* parent, int& xDepth, int& yDepth, int& xParent, int& yParent, const int& depth){      
-        if (xDepth != -1 && yDepth != -1){
-            return xDepth == yDepth && xParent != yParent;
-        }
-        if (node == nullptr || (xDepth != -1 && depth > xDepth) || (yDepth != -1 && depth > yDepth)){
-            return false;
-        }
-
-        // println("node: {}, x: {}, y: {}, xDepth: {}, yDepth: {}, xParent: {}, yParent: {}, depth: {}", node->val, x, y, xDepth, yDepth, xParent, yParent, depth);
-
-        // if (parent == nullptr){
-        //     println("null parent");
-        // } else {
-        //     println("parent: {}", parent->val);
-        // }
-
-
-        if (node->val == x){
-            xDepth = depth;
-            xParent = parent == nullptr ? -1: parent->val;
-        } else if (node->val == y){
-            yDepth = depth;
-            yParent = parent == nullptr ? -1: parent->val;
-        }
-
-        if (traverseTree(node->left, x, y, node, xDepth, yDepth, xParent, yParent, depth + 1) || traverseTree(node->right, x, y, node, xDepth, yDepth, xParent, yParent, depth + 1)){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 public:
     bool isCousins(TreeNode* root, int x, int y) {
-        int xDepth = -1;
-        int yDepth = -1;
-        int xParent = -1;
-        int yParent = -1;
-        int depth = 0;
+        queue<TreeNode*> q;
+        q.push(root);
+        bool foundX = false;
+        bool foundY = false;
 
-        return traverseTree(root, x, y, nullptr, xDepth, yDepth, xParent, yParent, depth);
+        while (!q.empty() && !foundX && !foundY){
+            int layerSize = q.size();
+
+            for (int i = 0; i < layerSize; i++){
+                TreeNode* node = q.front();
+                q.pop();
+
+                if (node->left != nullptr && node->right != nullptr){
+                    if (node->left->val == x && node->right->val == y){
+                        return false;
+                    } else if (node->right->val == x && node->left->val == y){
+                        return false;
+                    }
+                }
+
+                if (node->val == x){
+                    foundX = true;
+                } else if (node->val == y){
+                    foundY = true;
+                }
+
+                if (foundX && foundY){
+                    return true;
+                }
+
+                if (node->left != nullptr){
+                    q.push(node->left);
+                }
+                if (node->right != nullptr){
+                    q.push(node->right);
+                }
+            }
+        }
+
+        return false;
     }
 };
