@@ -559,3 +559,12 @@
 - If you have many 3-long bool vectors, just have 1 vector of ints, initialised to 0, and bit-push 1 to the left 0, 1, or 2 times if the number appears in vector 0, 1, or 2!
 
 
+# 993. Cousins in Binary Tree
+## DFS layer-finding pruning
+- If you are finding if 2 nodes are one the same layer of a binary tree, stop the search if you are searching bellow the first found layer!
+- When performing DFS, always, always, always see if you can prune the search!!!
+
+# Tree-layer comparing
+- If ever you are trying to compare values between a layer of a tree, *use BFS!*
+- Level-order traversal is much more natural for any problem involving comparing the values of the layer of a tree!
+
