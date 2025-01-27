@@ -575,3 +575,10 @@
 - Just use a DSU to get the different sets of elements that can be swapped between each other!
 
 
+# 1536. Minimum Swaps to Arrange a Binary Grid
+## Finding minimum adjacent swaps
+- For a minimum adjacent swaps question, you want to use a *greedy* approach!
+- Basically, you want to find the first value in the list that meets the requirement, then swap that value up the list with bubble sort!
+- Minimum swaps = greedy for most questions, just bubble sort the list, looking for the first valid value!
+
+
