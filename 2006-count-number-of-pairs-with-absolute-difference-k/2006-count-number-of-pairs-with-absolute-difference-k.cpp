@@ -1,15 +1,13 @@
 class Solution {
 public:
     int countKDifference(vector<int>& nums, int k) {
-        unordered_map<int, int> valueCount;
+        vector<int> valueCount(101);
         for (const auto& num: nums) valueCount[num]++;
 
         int result = 0;
 
-        for (const auto& [value, count]: valueCount){
-            if (valueCount.contains(value + k)){
-                result += count * valueCount[value + k];
-            }
+        for (int i = 0; i < 101 - k; i++){
+            result += valueCount[i] * valueCount[i + k];
         }
 
         return result;
