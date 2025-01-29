@@ -14,14 +14,10 @@ public:
         // Do the fast and slow pointers
         ListNode* fast = head;
         ListNode* slow = head;
-        // cout << "fast: " << fast->val << '\n';
-        // cout << "slow: " << slow->val << '\n';
 
         while (fast->next != nullptr && fast->next->next != nullptr){
             slow = slow->next;
             fast = fast->next->next;
-            // cout << "Fast: " << fast->val << '\n';
-            // cout << "Slow: " << slow->val << "\n\n";
         }
 
         if (fast->next != nullptr){
@@ -29,17 +25,12 @@ public:
             fast = fast->next;
         }
 
-        // cout << "Fast: " << fast->val << '\n';
-        // cout << "Slow: " << slow->val << "\n\n";
-
         // Loop until the head = the slow pointer, in which case point it to nil and return the original head
         ListNode* nextNode = nullptr;
-        // cout << "Head: " << head->val << '\n';
 
         while (head != slow){
             // Save the head's next node
             nextNode = head->next;
-            // cout << "Next: " << nextNode->val << '\n';
 
             // Travel down the slow pointer to the end
             ListNode* endNode = slow;
@@ -49,8 +40,6 @@ public:
                 endNode = endNode->next;
             }
 
-            // cout << "End: " << endNode->val << '\n';
-            // cout << "beforeEnd: " << beforeEnd->val << '\n';
             // Cut off the end node from the list
             beforeEnd->next = nullptr;
 
@@ -64,8 +53,6 @@ public:
 
             // Make the head the saved next node
             head = nextNode;
-
-            // cout << "Head: " << head->val << "\n\n";
         }
 
         // Loop until the head = the slow pointer, in which case point it to nil and return the original head
