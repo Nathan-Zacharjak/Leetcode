@@ -582,3 +582,44 @@
 - Minimum swaps = greedy for most questions, just bubble sort the list, looking for the first valid value!
 
 
+# 278. First Bad Version
+## How to find the middle index (Binary search!)
+- Use middle = left + (right - start)/2
+
+
+# 2818. Apply Operations to Maximize Score
+## Things to look up:
+- Sieve of eratosthenes, divide number by each smaller prime to get number of prime factors
+- Monotonic stack, multiply number of valid left positions by valid right per largest num
+- Used to find the number of valid sub-arrays quickly, without for for O(n^2) loop
+- Efficient calculate pow(), to make a powWithMod() function, in a mod 10^9 + 7 question
+- Add pow(nums[i], sub-array count) to score at each iteration
+- This question: https://leetcode.com/problems/largest-rectangle-in-histogram/description/
+
+
+# 2006. Count Number of Pairs With Absolute Difference K
+## Count vector vs. count map
+- If the constraints are tight, *always use a vector count when you can over a map!*
+- Using a map<int, int> over a vector uses more memory!
+
+
+# 143. Reorder List
+## Finding the middle node in a linked list
+- Use the "Tortoise and Hare" algorithm!
+- Increment a "fast" and "slow" pointer where the fast pointer travels twice for every time the slow pointer travels once!
+- Make sure your while loop stops once the fast pointer has reached the end (odd number of nodes), or has gone 1 beyond the end! (even number of nodes)
+- i.e. while (fast != nullptr && fast->next != nullptr)
+
+## Reversing a linked list
+- Make 3 pointers, "prev", "curr" and "tmp"
+- Then set these 3 pointers to a nullptr, the head, and the head, respectively
+- Then, simply traverse through the list, pointing tmp to tmp->next, curr to prev, then setting prev to curr, curr to tmp, moving each pointer down the list one node at a time!
+- Finally, stop looping once curr is null!
+
+## Merging two linked lists
+- To slot together 2 linked lists, where the a's first points to b's first, then a's second, then b's second, etc.
+- With the heads of the 2 lists, save each of their next nodes
+- Then, point a's head to b's, then point b's head to a's next node
+- Then set the heads of a and b to their saved next nodes, and continue until the next node of a's head or b's head is null!
+- Finally, point a's head to b's, and point b's head to a's next node, if it isn't null!
+
