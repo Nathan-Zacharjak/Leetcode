@@ -15,14 +15,9 @@ public:
         ListNode* fast = head;
         ListNode* slow = head;
 
-        while (fast->next != nullptr && fast->next->next != nullptr){
+        while (fast != nullptr && fast->next != nullptr){
             slow = slow->next;
             fast = fast->next->next;
-        }
-
-        if (fast->next != nullptr){
-            slow = slow->next;
-            fast = fast->next;
         }
 
         // Loop until the head = the slow pointer, in which case point it to nil and return the original head
