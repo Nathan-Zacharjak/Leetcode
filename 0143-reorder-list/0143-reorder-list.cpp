@@ -20,37 +20,31 @@ public:
             fast = fast->next->next;
         }
 
-        // Loop until the head = the slow pointer, in which case point it to nil and return the original head
-        ListNode* nextNode = nullptr;
+        // Reverse the 2nd linked list
+        ListNode* prev = nullptr;
+        ListNode* curr = slow;
+        ListNode* next = slow;
 
-        while (head != slow){
-            // Save the head's next node
-            nextNode = head->next;
+        while (curr != nullptr){
+            next = curr->next;
 
-            // Travel down the slow pointer to the end
-            ListNode* endNode = slow;
-            ListNode* beforeEnd = slow;
-            while (endNode->next != nullptr){
-                beforeEnd = endNode;
-                endNode = endNode->next;
-            }
-
-            // Cut off the end node from the list
-            beforeEnd->next = nullptr;
-
-            // Point the head to the slow pointer's end ndoe
-            head->next = endNode;
-
-            // Point the end node to the saved next node, unless the end node and next node are equal
-            if (endNode != nextNode){
-                endNode->next = nextNode;
-            }
-
-            // Make the head the saved next node
-            head = nextNode;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
         }
 
-        // Loop until the head = the slow pointer, in which case point it to nil and return the original head
-        head->next = nullptr;
+        // Merge the forward and reversed lists!
+        ListNode* reverse = prev;
+        ListNode* headNext = head->next;
+        ListNode* reverseNext = reverse->next;
+
+        while (headNext != nullptr && reverseNext != nullptr){
+            head->next = reverse;
+            reverse->next = headNext;
+            head = headNext;
+            reverse = reverseNext;
+            headNext = head->next;
+            reverseNext = reverse->next;
+        }
     }
 };
