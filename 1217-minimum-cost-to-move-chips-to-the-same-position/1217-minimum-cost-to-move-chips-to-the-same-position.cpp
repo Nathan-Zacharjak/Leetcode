@@ -1,8 +1,15 @@
 class Solution {
 public:
     int minCostToMoveChips(vector<int>& position) {
-        array<int, 2> counts;
-        for (const auto& pos: position) counts[pos % 2]++;
-        return min(counts[0], counts[1]);
+        int oddCount = 0;
+        int evenCount = 0;
+        for (const auto& pos: position){
+            if (pos % 2){
+                oddCount++;
+            } else {
+                evenCount++;
+            }
+        }
+        return min(oddCount, evenCount);
     }
 };
