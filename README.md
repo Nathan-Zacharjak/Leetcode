@@ -582,11 +582,6 @@
 - Minimum swaps = greedy for most questions, just bubble sort the list, looking for the first valid value!
 
 
-# 278. First Bad Version
-## How to find the middle index (Binary search!)
-- Use middle = left + (right - start)/2
-
-
 # 2818. Apply Operations to Maximize Score
 ## Things to look up:
 - Sieve of eratosthenes, divide number by each smaller prime to get number of prime factors
@@ -631,5 +626,36 @@
 - Always start with the recursive DP! From there it is much easier to see the iterative approach!
 - The first step, is always to look for a "recurrence relation"! Not always possible with complex DP, but this will make writing a recursive 1-liner much easier, and therefore make converting to an iterative solution very possible!
 - Don't forget to look for space optimisation when doing iterative DP!
+
+
+# 1400. Construct K Palindrome Strings
+## Counting odd/even numbers
+- Use a bitset! You can just flip the bit every time you encounter the number, and if it is flipped, that number is odd!
+- This only works when you have a small number of unique numbers/characters to possibly find in the array to count their occurrences
+- You can then use bitset.count() to count the number of flipped bits!
+
+
+# 278. First Bad Version
+## Binary search!
+- To find the middle index, and always have an index available on the left for even numbers of indices, use: "middle = left + (right - left) / 2"!
+- Doing this instead of (left + right) / 2 will avoid integer overflow!
+- Be warned that for even numbers, this gives you the left-middle element! (The other way gives you the right-middle!)
+- Typically binary search ends once left >= right, so do: "while(left < right)", but "right - left > 1" works as well!
+
+
+# 1217. Minimum Cost to Move Chips to The Same Position
+## Counting odds or evens shortcut
+- To count the number of odd or even values in an array, just count one of them! Then, to get the count of the other, just take evenCount = array.size() - oddCount, or oddCount = array.size() - evenCount!
+
+
+# 3286. Find a Safe Walk Through a Grid
+## Dijkstra's!
+- Just BFS with a priority queue... but it also has a "bestCost<node, int>" array! (E.g. bestCosts[x][y] = cost!)
+- Basically, you need to keep track of the best cost so far seen for reaching a node
+- Then, *only add to the priority queue if the node's cost is better!*
+- Initially, the best cost for each node is -1, for lowest cost, or 0 for highest cost
+- So, every unvisited node always has its cost updated, which automatically tracks which nodes are visited or not for you! (No need for a hashset of visited nodes!)
+- Dijkstra's can even work for these types of questions that look like an A*-search type of grid questions
+- If you have a grid, consider if you can use Dijkstra's, and figure out the question's potential "cost" to turn it into finding the shortest path!
 
 
