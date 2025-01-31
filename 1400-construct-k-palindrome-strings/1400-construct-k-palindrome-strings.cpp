@@ -1,21 +1,12 @@
 class Solution {
 public:
     bool canConstruct(string s, int k) {
-        int n = s.size();
-        if (n < k) return false;
+        if (s.size() < k) return false;
 
-        vector<int> charCounts(26, 0);
+        bitset<26> isCharOdd;
         int a = 'a';
-        for (const auto& c: s) charCounts[c - a]++;
-
-        int oddCharCounts = 0;
-
-        for (const auto& count: charCounts){
-            if (count % 2 != 0){
-                oddCharCounts++;
-            }
-        }
-
-        return oddCharCounts <= k;
+        for (const auto& c: s) isCharOdd.flip(c - a);
+        
+        return isCharOdd.count() <= k;
     }
 };
