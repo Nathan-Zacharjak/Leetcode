@@ -623,3 +623,13 @@
 - Then set the heads of a and b to their saved next nodes, and continue until the next node of a's head or b's head is null!
 - Finally, point a's head to b's, and point b's head to a's next node, if it isn't null!
 
+
+# 746. Min Cost Climbing Stairs
+## Easy DP
+- Just because a question is easy, doesn't mean it can't be dynamic programming!
+- Have to make decisions that depend on the decisions made previously = DP!
+- Always start with the recursive DP! From there it is much easier to see the iterative approach!
+- The first step, is always to look for a "recurrence relation"! Not always possible with complex DP, but this will make writing a recursive 1-liner much easier, and therefore make converting to an iterative solution very possible!
+- Don't forget to look for space optimisation when doing iterative DP!
+
+
