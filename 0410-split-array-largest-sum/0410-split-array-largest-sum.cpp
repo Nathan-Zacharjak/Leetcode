@@ -1,9 +1,6 @@
-#include <print>
-
 class Solution {
 private:
     int minSplitsSoMaxSumIsLessThanOrEqualToGuess(const vector<int>& nums, const int& guess){
-        // println("")
         int sumSoFar = 0;
         int splitCount = 0;
 
@@ -29,13 +26,8 @@ public:
         int ans = -1;
 
         while (left <= right){
-            println("\nleft: {}, right: {}", left, right);
-
             int guess = left + (right - left) / 2;
-            println("guess: {}", guess);
-
             int minSplits = minSplitsSoMaxSumIsLessThanOrEqualToGuess(nums, guess);
-            println("min splits: {}", minSplits);
 
             if (minSplits > k){
                 left = guess + 1;
