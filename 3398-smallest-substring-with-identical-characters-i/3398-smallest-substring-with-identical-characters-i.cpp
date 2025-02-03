@@ -1,4 +1,4 @@
-#include <print>
+// #include <print>
 
 class Solution {
 private:
@@ -43,30 +43,30 @@ private:
         return operations;
     }
 
-    int findMaxGroup(const string& s){
-        int currentGroup = 1;
-        int maxGroup = 1;
-        char currentChar = s[0];
-        for (int i = 1; i < s.size(); i++){
-            if (currentChar == s[i]){
-                currentGroup++;
-            } else {
-                if (maxGroup < currentGroup){
-                    maxGroup = currentGroup;
-                }
-                currentGroup = 1;
-                currentChar = s[i];
-            }
-        }
-        if (maxGroup < currentGroup){
-            maxGroup = currentGroup;
-        }
-        return maxGroup;
-    }
+    // int findMaxGroup(const string& s){
+    //     int currentGroup = 1;
+    //     int maxGroup = 1;
+    //     char currentChar = s[0];
+    //     for (int i = 1; i < s.size(); i++){
+    //         if (currentChar == s[i]){
+    //             currentGroup++;
+    //         } else {
+    //             if (maxGroup < currentGroup){
+    //                 maxGroup = currentGroup;
+    //             }
+    //             currentGroup = 1;
+    //             currentChar = s[i];
+    //         }
+    //     }
+    //     if (maxGroup < currentGroup){
+    //         maxGroup = currentGroup;
+    //     }
+    //     return maxGroup;
+    // }
 
 public:
     int minLength(string s, int numOps) {
-        if (numOps == 0) return findMaxGroup(s);
+        // if (numOps == 0) return findMaxGroup(s);
 
         int n = s.size();
         int left = 1;
@@ -75,9 +75,9 @@ public:
 
         while (left <= right){
             int guessOfMinIdenticalLength = left + (right - left)/2;
-            println("guessOfMinIdenticalLength: {}", guessOfMinIdenticalLength);
+            // println("guessOfMinIdenticalLength: {}", guessOfMinIdenticalLength);
             int operationsCount = getOperationsCount(s, guessOfMinIdenticalLength);
-            println("Opscount: {}", operationsCount);
+            // println("Opscount: {}", operationsCount);
 
             if (operationsCount > numOps){
                 left = guessOfMinIdenticalLength + 1;
