@@ -659,3 +659,25 @@
 - If you have a grid, consider if you can use Dijkstra's, and figure out the question's potential "cost" to turn it into finding the shortest path!
 
 
+# 3399. Smallest Substring With Identical Characters II
+## Minimum number of separators needed to divide array of size n into at most k-sized sub-arrays
+- *Each separator replaces the value at that spot in the array!*
+- Given by separatorCount = n / (k + 1)
+- Apparently the number of operations to turn a binary string of size n into groups of same digits with size less than or equal to a given size is operations += currentGroupSize / (givenLength + 1), whenever you find the end of a group
+- This is because the number of sections with k dividers is k + 1, and you want to have n total groups, so if you want groups of 3s, you want to place a divider at every 4th index, therefore 4 total sections, therefore you can fit arraySize / 4 complete 3-sized sections, therefore: n / (k + 1) !
+
+## Binary search with min-max substring problems
+- You can use binary search with some min-max substring problems, if you're clever about what ordered number you're actually searching!
+- You might be able to just binary search the answer directly! But you need a method of how you're going to decide to search the left or right of the answer!
+- When deciding to go to the left or right of the answer, *you don't necessarily use the value of the answer!*
+- Instead, you might use some criteria you can calculate from the input, that takes in the answer guess (middle) as an input, and outputs a calculated value that is linked to the answer indirectly!
+- Basically, if this calculated value is greater than something from the question input, then that *implies* that the answer must be smaller (or larger) than what was guessed (middle)!
+- And hopefully this indirect value should be easy to calculate!
+- Typically you do: while (left <= right)
+- guess = left + (right - left) / 2;
+- int indirectQualifier = getQualifier(array, guess);
+- if (indirectQualifier > questionArgK) left = guess + 1;
+- else right = guess - 1; answer = guess;
+- return answer;
+
+
