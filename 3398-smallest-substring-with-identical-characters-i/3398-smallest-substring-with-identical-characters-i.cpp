@@ -9,8 +9,12 @@ private:
         for (int i = 0; i < s.size(); i++){
             if (s[i] == '0' && i % 2 == 0){
                 oneAtIndex0Operations++;
+            } else if (s[i] == '1' && i % 2 == 0){
+                zeroAtIndex0Operations++;
             } else if (s[i] == '0' && i % 2 == 1){
                 zeroAtIndex0Operations++;
+            } else if (s[i] == '1' && i % 2 == 1){
+                oneAtIndex0Operations++;
             }
         }
 
