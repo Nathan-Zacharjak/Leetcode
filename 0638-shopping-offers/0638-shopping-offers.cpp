@@ -4,7 +4,6 @@ private:
 public:
     int shoppingOffers(const vector<int>& price, const vector<vector<int>>& specials, vector<int>& needs, const int& currentPrice = 0) {
         string key;
-
         for (const auto& need: needs){
             if (need < 0){
                 return -1;
