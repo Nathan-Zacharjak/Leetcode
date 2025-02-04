@@ -2,7 +2,7 @@ class Solution {
 private:
     unordered_map<string, int> DPArray;
 
-    int DPHelper(const vector<int>& price, const vector<vector<int>>& specials, vector<int> needs, const int& totalPrice, int currentPrice, const int& n){
+    int DPHelper(const vector<int>& price, const vector<vector<int>>& specials, vector<int>& needs, int& currentPrice){
         bool allItemsBought = true;
         for (const auto& need: needs){
             if (need > 0){
@@ -16,11 +16,12 @@ private:
         for (const auto& need: needs){
             key += to_string(need) + "#";
         }
-        
+
         key += to_string(currentPrice);
         if (DPArray.contains(key)) return DPArray[key];
 
         int minPrice = currentPrice;
+        int n = price.size();
 
         for (const auto &special: specials){
             int specialPrice = special[n];
@@ -42,7 +43,7 @@ private:
             int saving = normalPrice - specialPrice;
             int newPrice = currentPrice - saving;
             
-            int result = DPHelper(price, specials, newNeeds, totalPrice, newPrice, n);
+            int result = DPHelper(price, specials, newNeeds, newPrice);
             if (result < minPrice){
                 minPrice = result;
             }
@@ -54,13 +55,12 @@ private:
 
 public:
     int shoppingOffers(vector<int>& price, vector<vector<int>>& specials, vector<int>& needs) {
-        int n = price.size();
         int totalPrice = 0;
 
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < price.size(); i++){
             totalPrice += price[i] * needs[i];
         }
 
-        return DPHelper(price, specials, needs, totalPrice, totalPrice, n);
+        return DPHelper(price, specials, needs, totalPrice);
     }
 };
