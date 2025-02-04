@@ -681,3 +681,18 @@
 - return answer;
 
 
+# 638. Shopping Offers
+## DP vs. queue
+- If the things to choose from "refresh" at every iteration, you probably want DP, and not a queue!
+- This means the next state depends on your previous choices, so of course you need DP for that!
+
+## DP all index sets with no repeats, without memoisation!
+- There is a very cool trick to try all possible sets of elements of an array or index!
+- Pass an "index" state variable as an int, that starts at the first index of the array
+- Loop from int i = index, to the array's size, in the DP function
+- When selecting an index, call the DP array with the new index set to i!
+- This will make all DP array loops start with 0,0,0, then 0,0,1, 0,0,2, and when returning: 0,1,1, 0,1,2, 0,2,1, etc. until all sets are searched through!
+
+## Accessing the first/last element in an array in C++
+- There is a vector.front(), and vector.back() function to access the first and last elements of a vector!
+
