@@ -14,21 +14,16 @@ public:
         }
 
         for (const auto& special: specials){
-            int specialPrice = special.back();
-            if (currentPrice + specialPrice >= minPrice) continue;
+            if (currentPrice + special.back() >= minPrice) continue;
 
-            for (int i = 0; i < needs.size(); i++){
-                needs[i] -= special[i];
-            }
+            for (int i = 0; i < n; i++) needs[i] -= special[i];
 
             int result = shoppingOffers(price, specials, needs);
             if (result != -1){
-                minPrice = min(minPrice, result + specialPrice);
+                minPrice = min(minPrice, result + special.back());
             }
 
-            for (int i = 0; i < needs.size(); i++){
-                needs[i] += special[i];
-            }
+            for (int i = 0; i < n; i++) needs[i] += special[i];
         }
 
         return minPrice;
