@@ -1,4 +1,4 @@
-#include <print>
+// #include <print>
 
 class Solution {
 public:
@@ -38,7 +38,7 @@ public:
                 // If window total is max seen, update max window total
                 maxWindowCount = max(maxWindowCount, windowCount);
             }
-            println("left: {}, right: {}, nonGrumpyCount: {}, windowCount: {}, maxWindowCount: {}", left, right, nonGrumpyCount, windowCount, maxWindowCount);
+            // println("left: {}, right: {}, nonGrumpyCount: {}, windowCount: {}, maxWindowCount: {}", left, right, nonGrumpyCount, windowCount, maxWindowCount);
             // right++
             right++;
 
