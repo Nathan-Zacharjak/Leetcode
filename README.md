@@ -696,3 +696,17 @@
 ## Accessing the first/last element in an array in C++
 - There is a vector.front(), and vector.back() function to access the first and last elements of a vector!
 
+
+# 1052. Grumpy Bookstore Owner
+## Sliding window initialisation
+- Try not to have 2 while loops for sliding window problems!
+- Try to just have 1 while loop checking right is within bounds, and having a simple if statement at the top of the loop, checking if the left pointer should move or not!
+
+
+# 2786. Visit Array Positions to Maximize Score
+## Array groups
+- You can simplify a question greatly if you are able to group sums/maxes/whatever of numbers into groups in a new smaller array!
+- E.g. if you can sum over groups of consecutive even/odd numbers no problem, given the question constraints, do it!
+- Then you can treat each group as 1 number, and simply iterate over each element in the new array, rather than having to fast-forward through each group! (Which will be way more complex to implement!)
+
+
