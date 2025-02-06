@@ -734,3 +734,12 @@
 - A solution with the same complexity that doesn't modify the input is always better than one that does!
 
 
+# 2418. Sort the People
+## Sorting 2 arrays via index
+- If you have 2 arrays and want to sort them by the property of the second array, there's a neat trick that avoids using a map<>, if for whatever reason it's not an option (e.g. can't hash the key)
+- Just create a new array of the same size, making each value equal to its index
+- Then sort the index array! (Using the 2nd array)
+- After that, you can simply loop the index array in order, and grab each element from the first array using the current index!
+- You now have the first array, sorted via the second!
+
+
