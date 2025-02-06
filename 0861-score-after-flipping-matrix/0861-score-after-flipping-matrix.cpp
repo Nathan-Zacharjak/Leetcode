@@ -1,5 +1,3 @@
-// #include <print>
-
 class Solution {
 public:
     int matrixScore(vector<vector<int>>& grid) {
@@ -7,7 +5,6 @@ public:
         // Each row has as many 1s to the left as possible
         int m = grid.size();
         int n = grid[0].size();
-
         vector<int> oneCounts(n, 0);
 
         for (auto& row: grid){
@@ -21,18 +18,9 @@ public:
             }
         }
 
-        // for (auto i = 0; i < n; i++){
-        //     println("index: {}, oneCount: {}", i, oneCounts[i]);
-        //     for (const auto& col: grid[i]){
-        //         print("{} ", col);
-        //     }
-        //     print("\n");
-        // }
-
         // Try to make each column have as many 1s as possible
         int score = 0;
         int powerOf2 = 1 << n - 1;
-        // println("powerOf2 : {}", powerOf2);
 
         for (const auto& count: oneCounts){
             int bestCount = max(m - count, count);
