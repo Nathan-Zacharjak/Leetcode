@@ -723,3 +723,14 @@
 - And finally at the end, just take the max of maxChoose and maxSkip!
 
 
+# 861. Score After Flipping Matrix
+## Bit-shifting to get powers of 2
+- You can get a power of 2 by doing: powerOf2 = 1 << power
+- If you're wanting to move the 1 into the first, second, third, etc place, then you need to minus the power by 1, usually when you're dealing with indexes or positions
+- E.g. powerOf2 = 1 << columnCount - 1
+
+## Modifying the input
+- Always ask the interviewer if it's OK to modify the input or not! Sometimes it's not, and they'll silently mark you down for it!
+- A solution with the same complexity that doesn't modify the input is always better than one that does!
+
+
