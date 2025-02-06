@@ -710,3 +710,16 @@
 - Then you can treat each group as 1 number, and simply iterate over each element in the new array, rather than having to fast-forward through each group! (Which will be way more complex to implement!)
 
 
+# 198. House Robber
+## "Skip or no skip" problems
+- "Skip or no skip" problems arise when you are linearly scanning an array, and you have to choose whether you are skipping the current value/index or not!
+- This normally depends on 2 running max/mins/counts, etc. that count the max value you can get if your last choice was to skip, or the max value if your last choice was to choose!
+- You then have 4 scenarios for the next step:
+1. Choose and then choose (chooseChoose = maxChoose + [consequence of choosing again])
+2. Choose and then skip  (chooseSkip = maxSkip + [consequence of choosing then skipping])
+3. Skip and then choose (skipChoose = maxChoose + [consequence of skipping then choosing])
+4. Skip and then skip (skipSkip = maxSkip + [consequence of skipping again])
+- Then you simply take: maxChoose = max(chooseChoose, skipChoose), and maxSkip = max(chooseSkip, skipSkip), for the next iteration!
+- And finally at the end, just take the max of maxChoose and maxSkip!
+
+
