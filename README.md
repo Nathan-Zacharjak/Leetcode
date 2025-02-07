@@ -743,3 +743,37 @@
 - You now have the first array, sorted via the second!
 
 
+# 1175. Prime Arrangements
+## MOD 10^9 + 7 questions!
+- Just do a % MOD every time you do an operation! (Add, multiply, etc.)
+- If output number very large, *ask about modulo*!
+- When using "e" factorial notation, make sure to do "1e9 + 7", not "10e9 + 7"!
+- Drop the zero in "10e9", using "e" integer notation!
+
+## Prime number checking/counting
+- 1 is not a prime!
+- isPrime check:
+- Time: O(sqrt(n)), Space: O(1)
+- We only need to check for multiples up to the square root of num, because only numbers up to the square root can be the first term of a multiplication that gives num!
+- for (int i = 2; i * i <= num; i++) {
+  -     if (num % i == 0) {
+    -		return false;
+  -    }
+- }
+- return true;
+- If run on all numbers from 1 to n: Time: O(n*sqrt(n)), Space: O(1)
+
+## Prime number generation
+- Prime generator:
+- O(n*log(log(n))), O(<n)
+- "Sieve Of Eratosthenes"
+- Make boolean array, of size n + 1, and defaulted to true
+- Do the prime loop: for (int p = 2; p*p <= n; p++)
+- if primes[p] == true, for (int i = p*p; i <= n; i += p)
+- We mark all multiples of the prime number, up to n:
+- for (int i = p * p; i <= n; i += p) prime[i] = false
+- (But we start at i = p * p, because all multiples less than the square of p have already been marked!)
+- Finally, after the outer loop ends, we have all prime numbers! To test, just do:
+- if(primes[i] == true)
+
+
