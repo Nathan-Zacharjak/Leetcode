@@ -777,3 +777,40 @@
 - if(primes[i] == true)
 
 
+# 1713. Minimum Operations to Make a Subsequence
+## Longest increasing subsequence size
+- To find the size of the longest increasing subsequence, you do the following:
+- First, you need an empty array, to contain the sequence
+- Next, you loop through your given array
+- If the sequence array is empty, or the last element in the sequence array is smaller than the current value, insert it at the end
+- If the last element in the sequence array is equal to the last element, ignore it
+- And finally, if the last element in the sequence is larger than the current value, you need to find the smallest value in the sequence that is larger than the current value
+- You can do this using binary search!
+- Once you've found the value, replace it with the current value
+- After looping through the whole input array, the sequence array is now the size of the longest increasing subsequence!
+
+## Longest increasing subsequence
+- To get the actual longest increasing subsequence, you need to store an array of indexes of the values chosen in the sequence so far
+- And also, you need an "ancestors" array, which is a recursive array, that gives the index of the previous element, given that index, and gives -1 for the first element in that sequence
+- This array needs to be initialised to the size of the input array!
+- From there, using the above approach, it should be easy to maintain these extra 2 arrays, where you then cycle through the final ancestors array, inserting into a "path" array, and return the reversed path array!
+- The 3 key things:
+1. You create new subsequence by piggybacking off of the last value smaller than the current value, and set the ancestor of the current value to it
+2. You only do this when the current value isn't smaller than all other numbers in the fake LIS array, because in this case we just have a new subsequence, and the ancestor of this value was already set to -1 during the initialisation of the ancestors array, meaning that the current value is the start value of a subsequence!
+3. You just take the last value in the fake LIS indexes array, and loop through the ancestors array from there to get the subsequence! This is because if a smaller subsequence was later found, the last value in the fake LIS array wouldn't have been touched! (And if another equal length one was found, that one would be looped through instead)
+
+## Longest matching subsequence size, with unique elements
+- A longest matching subsequence problem, when it involves unique elements, turns into a longest *increasing* subsequence size problem!
+- This is because the unique elements allow you to map each element in the unique elements array to an index
+- You can then simply replace each element in the given array with these indexes, and remove all elements that do not match with the unique target array
+- At this point, all you have to do is find the longest increasing subsequence of indexes contained in the modified given array
+- This gives you the longest matching subsequence of target, from the given array!
+- This saves you from having to do DP, as a longest increasing subsequence problem has the above well-known O(n log n) solution!
+
+
+# 1143. Longest Common Subsequence
+## DP vs. greedy
+- When trying to put together a greedy algorithm for what looks like a DP problem, it's probably best in the limited time in an interview to just skip straight to a DP solution, and not get bogged down in trying to find a greedy one!
+- Also, LCS is a very well-known problem that must be solved using DP... It has a O(M*N) complexity, so quadratic, so the constraints being 10^3 probably means a DP approach!
+
+
