@@ -1,4 +1,4 @@
-#include <print>
+// #include <print>
 
 class Solution {
 public:
@@ -75,11 +75,11 @@ public:
         }
         reverse(lis.begin(), lis.end());
 
-        println("LIS:");
-        for (const auto& n: lis){
-            print("{} ", n);
-        }
-        print("\n");
+        // println("LIS:");
+        // for (const auto& n: lis){
+        //     print("{} ", n);
+        // }
+        // print("\n");
 
         return fakeLIS.size();
     }
