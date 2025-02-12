@@ -1,12 +1,15 @@
 class Solution {
 public:
     string mostCommonWord(string paragraph, vector<string>& banned) {
-        map<string, int> wordCounts;
+        unordered_map<string, int> wordCounts;
         string currentWord;
+        int a = 'a';
 
         for (auto& c: paragraph){
             c = tolower(c);
-            if (c - 'a' < 0 || c - 'a' > 26){
+            int ascii = c - a;
+
+            if (ascii < 0 || ascii > 26){
                 if (!currentWord.empty()){
                     wordCounts[currentWord]++;
                     currentWord.clear();
@@ -21,12 +24,11 @@ public:
             currentWord.clear();
         }
 
-        unordered_set<string> bannedWords;
-        for (const auto& word: banned) bannedWords.insert(word);
+        for (const auto& word: banned) wordCounts[word] = 0;
 
         int maxCount = 0;
         for (const auto& [word, count]: wordCounts){
-            if (maxCount < count && !bannedWords.contains(word)){
+            if (maxCount < count){
                 maxCount = count;
                 currentWord = word;
             }
