@@ -814,3 +814,17 @@
 - Also, LCS is a very well-known problem that must be solved using DP... It has a O(M*N) complexity, so quadratic, so the constraints being 10^3 probably means a DP approach!
 
 
+# 924. Minimize Malware Spread
+## DFS Component Colouring
+- You can use DFS to find all of the connected components of a graph!
+- Rather than just marking a node as visited and detecting if you try to visit an already visited node to detect a cycle, you can just make a "colour" array, which takes an index, and gives an index label, representing the colour
+- Then each of the connected components in the graph will have the same colour number!
+- (This is not as fast as Union-Find...)
+
+
+# 628. Maximum Product of Three Numbers
+## Deque/queue vs. multiple running maxes/mins
+- Don't be afraid to use many running mins/maxes when needed! Using a queue or deqeue is very costly in time complexity!
+- It brings your complexity up from O(n) to O(n log n)!
+
+
