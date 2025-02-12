@@ -1,5 +1,3 @@
-#include <print>
-
 class Solution {
 public:
     int maximumProduct(vector<int>& nums) {
@@ -26,11 +24,11 @@ public:
                 top3.push_back(num);
                 sort(top3.begin(), top3.end());
             }
-            println("size: {}, num :{}, front: {}", top3.size(), num, top3.front());
         }
 
         long long productPos = 1;
         long long productNeg = neg1 * neg2;
+        
         // If top 3 numbers are all negative
         if (top3.back() >= 0) {
             productNeg *= top3.back();
