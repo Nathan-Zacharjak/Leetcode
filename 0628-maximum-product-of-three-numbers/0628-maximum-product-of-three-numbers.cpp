@@ -1,46 +1,32 @@
 class Solution {
 public:
     int maximumProduct(vector<int>& nums) {
-        deque<int> top3;
-        int neg1 = 0;
-        int neg2 = 0;
+        int max1 = -1000;
+        int max2 = -1000;
+        int max3 = -1000;
+        int min1 = 1000;
+        int min2 = 1000;
 
         for (const auto& num: nums){
-            int front = top3.empty() ? -10000 : top3.front();
-
-            if (num < 0){
-                if (neg1 > num){
-                    neg2 = neg1;
-                    neg1 = num;
-                } else if (neg2 > num){
-                    neg2 = num;
-                }
+            if (num >= max1){
+                max3 = max2;
+                max2 = max1;
+                max1 = num;
+            } else if (num >= max2){
+                max3 = max2;
+                max2 = num;
+            } else if (num >= max3){
+                max3 = num;
             }
-            
-            if (num > front || top3.size() < 3){
-                if (top3.size() >= 3){
-                    top3.pop_front();
-                }
-                top3.push_back(num);
-                sort(top3.begin(), top3.end());
+
+            if (num <= min1){
+                min2 = min1;
+                min1 = num;
+            } else if (num <= min2){
+                min2 = num;
             }
         }
 
-        long long productPos = 1;
-        long long productNeg = neg1 * neg2;
-        
-        // If top 3 numbers are all negative
-        if (top3.back() >= 0) {
-            productNeg *= top3.back();
-        } else {
-            productNeg = -1e12;
-        }
-        
-        while (!top3.empty()){
-            productPos *= top3.front();
-            top3.pop_front();
-        }
-
-        return max(productPos, productNeg);
+        return max(max1 * max2 * max3, max1 * min1 * min2);
     }
 };
