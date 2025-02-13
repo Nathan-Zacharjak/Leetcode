@@ -1,7 +1,8 @@
 import pandas as pd
 
 def dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:
-    return customers.drop_duplicates("email")
+    customers.drop_duplicates("email", inplace = True)
+    return customers
 
     # seenEmails = set()
     # deleteIds = set()
