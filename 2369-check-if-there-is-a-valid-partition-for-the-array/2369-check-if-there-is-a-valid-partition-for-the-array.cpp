@@ -1,4 +1,4 @@
-#include <print>
+// #include <print>
 
 class Solution {
 private:
@@ -55,7 +55,7 @@ public:
 
         for (auto i = 1; i < nums.size(); i++){
             // DPArray[i] = is2or3SkipViable(nums, i);
-            auto viable = is2or3SkipViable(nums, i);
+            pair<bool, bool> viable = is2or3SkipViable(nums, i);
 
             // bool last2Skip = i - 2 < 0 ? false : DPArray[i - 2].first;
             bool last2Skip = twoSkipPair.first;
@@ -66,6 +66,7 @@ public:
                 // DPArray[i] = {false, false};
                 viable = {false, false};
             }
+            
             threeSkipPair = twoSkipPair;
             twoSkipPair = oneSkipPair;
             oneSkipPair = viable;
@@ -89,7 +90,7 @@ public:
         // }
 
         // return twoSkipViable || threeSkipViable;
-        
+
         return twoSkipPair.first || threeSkipPair.second;
     }
 };
