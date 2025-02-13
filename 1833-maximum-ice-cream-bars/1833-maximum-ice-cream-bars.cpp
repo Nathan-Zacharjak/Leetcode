@@ -6,25 +6,16 @@ public:
 
         for (const auto& cost: costs) costCounts[cost]++;
 
-        int count = 0;
-        for (auto i = 1; i < costCounts.size(); i++){
+        int boughtCount = 0;
+        for (auto i = 1; i <= maxCost; i++){
             if (costCounts[i] == 0) continue;
-            if (coins - i < 0) break;
+            if (coins < i) break;
 
-            long long costCount = costCounts[i];
-            long long buyAllCoins = coins - costCount * i;
-            if (buyAllCoins > 0){
-                coins = buyAllCoins;
-                count += costCounts[i];
-            } else {
-                while (coins - i >= 0 && costCounts[i] > 0){
-                    coins -= i;
-                    count++;
-                    costCounts[i]--;
-                }
-            }
+            int count = min(costCounts[i], coins/i);
+            boughtCount += count;
+            coins -= count * i;
         }
 
-        return count;
+        return boughtCount;
     }
 };
