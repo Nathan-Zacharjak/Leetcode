@@ -3,6 +3,7 @@
 class Solution {
 private:
     // Doesn't check if you're off the side in the next iteration, just the conditions of the first 3 values from start
+    // Returns if a 2skip is viable (first) or a 3skip is viable (second)
     pair<bool, bool> is2or3SkipViable(const vector<int>& nums, const int& start){
         bool is2Equal = false;
         bool is3Equal = false;
@@ -50,19 +51,16 @@ public:
         pair<bool, bool> oneSkipPair = is2or3SkipViable(nums, 0);
         pair<bool, bool> twoSkipPair = {false, false};
         pair<bool, bool> threeSkipPair = {false, false};
-        // int last2SkipIndex = -2;
-        // int last3SkipIndex = -3;
+        pair<bool, bool> viable;
 
         for (auto i = 1; i < nums.size(); i++){
             // DPArray[i] = is2or3SkipViable(nums, i);
-            pair<bool, bool> viable = is2or3SkipViable(nums, i);
+            viable = is2or3SkipViable(nums, i);
 
             // bool last2Skip = i - 2 < 0 ? false : DPArray[i - 2].first;
-            bool last2Skip = twoSkipPair.first;
             // bool last3Skip = i - 3 < 0 ? false : DPArray[i - 3].second;
-            bool last3Skip = threeSkipPair.second;
 
-            if (!last2Skip && !last3Skip){
+            if (!twoSkipPair.first && !threeSkipPair.second){
                 // DPArray[i] = {false, false};
                 viable = {false, false};
             }
