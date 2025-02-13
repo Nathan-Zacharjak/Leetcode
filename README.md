@@ -828,3 +828,17 @@
 - It brings your complexity up from O(n) to O(n log n)!
 
 
+# 1833. Maximum Ice Cream Bars
+## Counting Sort == Bucket Sort!
+- When wanting to sort an array of elements, and you have not that many possible values, bucket sort beats O(n log n) complexity!
+- Just create a count array, where every index is a possible value, and the value is the count of the number of times that value appears in the array!
+- Then you can simply loop through the count array, and if you skip each value with a count of 0, you will implicitly loop through the array, sorted!
+- To re-create the behaviour of looping through each element in the sorted array, just include a while loop inside to treat each element individually
+- But hopefully you can just use the count to loop through the count array normally, probably using "*" instead of incrementing!
+- If you have a large range of possible values, but really big values won't show up too often, you can just take the max element of the array first, and set *that* to be the size of the counts array! (Rather than the question's maximum possible value!)
+
+## Maximum you can buy
+- To get the "Maximum number of things you can buy", just take the minimum of the number of things you can buy, and the money you have, divided by the cost of 1 item
+- i.e. int count = min(costsCount[costOf1], money/costOf1);
+
+
