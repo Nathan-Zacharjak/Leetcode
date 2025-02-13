@@ -1,4 +1,4 @@
-#include <print>
+// #include <print>
 
 class Solution {
 private:
@@ -68,7 +68,7 @@ public:
         int twoSkipIndex = DPArray.size() - 2;
         bool threeSkipViable = false;
         int threeSkipIndex = DPArray.size() - 3;
-        println("2index: {}, 3index: {}", twoSkipIndex, threeSkipIndex);
+        // println("2index: {}, 3index: {}", twoSkipIndex, threeSkipIndex);
 
         if (twoSkipIndex >= 0){
             twoSkipViable = DPArray.at(twoSkipIndex).first;
