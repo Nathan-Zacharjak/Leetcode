@@ -1,8 +1,8 @@
 class Solution {
 public:
     int maxIceCream(vector<int>& costs, int& coins) {
-        // int maxCost = *max_element(costs.begin(), costs.end());
-        vector<int> costCounts(1e5 + 1, 0);
+        int maxCost = *max_element(costs.begin(), costs.end());
+        vector<int> costCounts(maxCost + 1, 0);
 
         for (const auto& cost: costs) costCounts[cost]++;
 
