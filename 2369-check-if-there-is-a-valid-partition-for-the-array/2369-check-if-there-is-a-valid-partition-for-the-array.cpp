@@ -1,4 +1,4 @@
-// #include <print>
+#include <print>
 
 class Solution {
 private:
@@ -45,17 +45,30 @@ private:
 
 public:
     bool validPartition(const vector<int>& nums) {
-        vector<pair<bool, bool>> DPArray(nums.size(), {false, false});
-        DPArray[0] = is2or3SkipViable(nums, 0);
+        // vector<pair<bool, bool>> DPArray(nums.size(), {false, false});
+        // DPArray[0] = is2or3SkipViable(nums, 0);
+        pair<bool, bool> oneSkipPair = is2or3SkipViable(nums, 0);
+        pair<bool, bool> twoSkipPair = {false, false};
+        pair<bool, bool> threeSkipPair = {false, false};
+        // int last2SkipIndex = -2;
+        // int last3SkipIndex = -3;
 
         for (auto i = 1; i < nums.size(); i++){
-            DPArray[i] = is2or3SkipViable(nums, i);
-            bool last2Skip = i - 2 < 0 ? false : DPArray[i - 2].first;
-            bool last3Skip = i - 3 < 0 ? false : DPArray[i - 3].second;
+            // DPArray[i] = is2or3SkipViable(nums, i);
+            auto viable = is2or3SkipViable(nums, i);
+
+            // bool last2Skip = i - 2 < 0 ? false : DPArray[i - 2].first;
+            bool last2Skip = twoSkipPair.first;
+            // bool last3Skip = i - 3 < 0 ? false : DPArray[i - 3].second;
+            bool last3Skip = threeSkipPair.second;
 
             if (!last2Skip && !last3Skip){
-                DPArray[i] = {false, false};
+                // DPArray[i] = {false, false};
+                viable = {false, false};
             }
+            threeSkipPair = twoSkipPair;
+            twoSkipPair = oneSkipPair;
+            oneSkipPair = viable;
         }
 
         // println("DPArray:");
@@ -63,18 +76,20 @@ public:
         //     println("i: {}, 2skip: {}, 3skip: {}", i, DPArray[i].first, DPArray[i].second);
         // }
 
-        bool twoSkipViable = false;
-        int twoSkipIndex = DPArray.size() - 2;
-        bool threeSkipViable = false;
-        int threeSkipIndex = DPArray.size() - 3;
+        // bool twoSkipViable = false;
+        // int twoSkipIndex = DPArray.size() - 2;
+        // bool threeSkipViable = false;
+        // int threeSkipIndex = DPArray.size() - 3;
 
-        if (twoSkipIndex >= 0){
-            twoSkipViable = DPArray[twoSkipIndex].first;
-        }
-        if (threeSkipIndex >= 0){
-            threeSkipViable = DPArray[threeSkipIndex].second;
-        }
+        // if (twoSkipIndex >= 0){
+        //     twoSkipViable = DPArray[twoSkipIndex].first;
+        // }
+        // if (threeSkipIndex >= 0){
+        //     threeSkipViable = DPArray[threeSkipIndex].second;
+        // }
 
-        return twoSkipViable || threeSkipViable;
+        // return twoSkipViable || threeSkipViable;
+        
+        return twoSkipPair.first || threeSkipPair.second;
     }
 };
