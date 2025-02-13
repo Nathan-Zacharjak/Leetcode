@@ -70,6 +70,7 @@ public:
             threeSkipPair = twoSkipPair;
             twoSkipPair = oneSkipPair;
             oneSkipPair = viable;
+            
             if (oneSkipPair.first || oneSkipPair.second || twoSkipPair.first || twoSkipPair.second || threeSkipPair.first || threeSkipPair.second){
                 continue;
             } else {
