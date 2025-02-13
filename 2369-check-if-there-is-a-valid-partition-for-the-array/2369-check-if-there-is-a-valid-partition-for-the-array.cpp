@@ -63,18 +63,16 @@ public:
         //     println("i: {}, 2skip: {}, 3skip: {}", i, DPArray[i].first, DPArray[i].second);
         // }
 
-        // return DPHelper(nums, 0, DPArray);
         bool twoSkipViable = false;
         int twoSkipIndex = DPArray.size() - 2;
         bool threeSkipViable = false;
         int threeSkipIndex = DPArray.size() - 3;
-        // println("2index: {}, 3index: {}", twoSkipIndex, threeSkipIndex);
 
         if (twoSkipIndex >= 0){
-            twoSkipViable = DPArray.at(twoSkipIndex).first;
+            twoSkipViable = DPArray[twoSkipIndex].first;
         }
         if (threeSkipIndex >= 0){
-            threeSkipViable = DPArray.at(threeSkipIndex).second;
+            threeSkipViable = DPArray[threeSkipIndex].second;
         }
 
         return twoSkipViable || threeSkipViable;
