@@ -24,8 +24,8 @@ private:
 
 public:
     bool validPartition(const vector<int>& nums, const int& start = 0) {
-        vector<int> DPArray(nums.size() + 3, -1);
-        
+        vector<int> DPArray(nums.size(), -1);
+
         return DPHelper(nums, 0, DPArray);
     }
 };
