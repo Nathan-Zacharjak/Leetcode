@@ -842,3 +842,12 @@
 - i.e. int count = min(costsCount[costOf1], money/costOf1);
 
 
+# 27. Remove Element
+## Removing an unwanted array value (Without caring for array order)
+- It's really easy to remove all occurrences of a value from an array in-place!
+- Simply keep an int pointer to the next "Keep" index you want to fill (starting at 0)
+- Then keep swapping this index with the current loop index, so long as the current value isn't the one to remove!
+- This will leave all unwanted values swapped to the end of the array, which you can then figure out the needed vector.resize() size from the final count of kept elements!
+- vector.resize(keepIndex + 1)
+
+
