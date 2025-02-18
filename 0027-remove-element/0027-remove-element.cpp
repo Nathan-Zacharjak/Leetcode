@@ -1,5 +1,3 @@
-#include <print>
-
 class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
@@ -29,14 +27,8 @@ public:
 
         int removedCount = 0;
 
-        for (const auto & num: nums) print("{} ", num);
-        print("\n");
-        for (auto i = 0; i < nums.size(); i++) print("{} ", i);
-        print("\n");
-
         if (removeSize > 0){
             for (auto i = nums.size() - 1; i >= 0; i--){
-                println("Swapping: {}, and, {}, at indexes: {}, and {}", nums[i], nums[removeStartIndex + removedCount], i, removeStartIndex + removedCount);
                 swap(nums[i], nums[removeStartIndex + removedCount]);
                 removedCount++;
                 if (removedCount >= removeSize || removeStartIndex + removedCount >= nums.size()) break;
