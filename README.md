@@ -851,3 +851,11 @@
 - vector.resize(keepIndex + 1)
 
 
+# 187. Repeated DNA Sequences
+## String sliding window
+- To perform a proper sliding window for a string, you need to use bit manipulation!
+- Turn all of the characters into numbers from 0 to number of unique possible characters
+- Then use bit manipulation on a bitset, to move the current number by 2 to the left (or the max number of bits in the highest value unique character label), to create a spot for the next number, AND move the oldest number out of the window!
+- Then OR the bitmask with the next character's value to add the next character's value onto the end!
+- You can then use an unordered_set to track the substrings seen in the window so far, without having to make a new string from scratch for every character!
+
