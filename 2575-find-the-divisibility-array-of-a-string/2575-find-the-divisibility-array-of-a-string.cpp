@@ -4,10 +4,11 @@ public:
         vector<int> answer;
         long long previousRemainder = 0;
         int zero = '0';
+        long long divisionEnd = 0;
 
         for (auto i = 0; i < word.size(); i++){
             int digit = word[i] - zero;
-            long long divisionEnd = (previousRemainder * 10) + digit;
+            divisionEnd = (previousRemainder * 10) + digit;
             int remainder = divisionEnd % m;
             answer.push_back(remainder == 0);
             previousRemainder = remainder;
