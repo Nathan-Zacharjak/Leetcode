@@ -859,3 +859,18 @@
 - Then OR the bitmask with the next character's value to add the next character's value onto the end!
 - You can then use an unordered_set to track the substrings seen in the window so far, without having to make a new string from scratch for every character!
 
+
+# 2661. First Completely Painted Row or Column
+## Value to coords map
+- Instead of mapping a matrix from its values to a pair of coords, just create 2 vectors, and use the index to map the value to row, and the value to column, in 2 separate simple int vectors!
+- This only works if all values in the matrix are unique, and all values in the matrix go from 0 to some calculable size!
+
+
+# 1. Two Sum
+## Unique answers
+- When a question states that it has only *1* answer, you are probably able to optimise more than you think!
+- Early stopping will almost certainly be possible
+- You might be able to avoid using multiple loops and just use one! E.g. building a set or map AS you check the answer, might be possible!
+- In this case, we are able to check the answer *before* adding a value to a hashmap
+
+
