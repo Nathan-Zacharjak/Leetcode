@@ -4,24 +4,32 @@ public:
         int n = mat.size();
         int m = mat[0].size();
 
-        unordered_map<int, pair<int,int>> valToCoord;
-
-        for (auto i = 0; i < n; i++){
-            for (auto j = 0; j < m; j++){
-                valToCoord[mat[i][j]] = {i,j};
-            }
-        }
-
-        vector<int> rowPaintCount(n,0);
-        vector<int> colPaintCount(m,0);
+        unordered_map<int, int> numToIndex;
 
         for (auto i = 0; i < arr.size(); i++){
-            auto [row,col] = valToCoord[arr[i]];
-            rowPaintCount[row]++;
-            colPaintCount[col]++;
-            if (rowPaintCount[row] == m || colPaintCount[col] == n) return i;
+            numToIndex[arr[i]] = i;
         }
 
-        return -1;
+        int result = arr.size();
+
+        for (auto row = 0; row < n; row++){
+            int maxPaintIndex = -1;
+            for (auto col = 0; col < m; col++){
+                int index = numToIndex[mat[row][col]];
+                maxPaintIndex = max(maxPaintIndex, index);
+            }
+            result = min(result, maxPaintIndex);
+        }
+
+        for (auto col = 0; col < m; col++){
+            int maxPaintIndex = -1;
+            for (auto row = 0; row < n; row++){
+                int index = numToIndex[mat[row][col]];
+                maxPaintIndex = max(maxPaintIndex, index);
+            }
+            result = min(result, maxPaintIndex);
+        }
+
+        return result;
     }
 };
