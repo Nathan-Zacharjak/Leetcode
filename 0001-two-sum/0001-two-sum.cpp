@@ -4,12 +4,9 @@ public:
         unordered_map<int, int> numToIndex;
 
         for (auto i = 0; i < nums.size(); i++){
-            numToIndex[nums[i]] = i;
-        }
-
-        for (auto i = 0; i < nums.size(); i++){
             int complement = target - nums[i];
-            if (numToIndex.contains(complement) && numToIndex[complement] != i) return {i, numToIndex[complement]};
+            if (numToIndex.contains(complement)) return {i, numToIndex[complement]};
+            numToIndex[nums[i]] = i;
         }
 
         return {};
