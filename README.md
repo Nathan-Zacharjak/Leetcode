@@ -874,3 +874,33 @@
 - In this case, we are able to check the answer *before* adding a value to a hashmap
 
 
+# 2097. Valid Arrangement of Pairs
+## Totem pole problem (Eulerian Path)
+- To find a valid path through pairs of values, treat it like a graph problem!
+- Now the problem changes to finding a valid path through all values (nodes), where each value is visited only once!
+- In this problem however, as we are guaranteed a path, we are actually wanting to simply visit each *edge* only once, to include the last pair, even if it has a end node already visited (Since we're not visiting any more nodes after that!)
+
+## Visiting each node/edge once/Totem pole problem = Post-order DFS!
+- So, the key to finding an Eulerian Path, or visiting every node only once? **Post-order DFS!**
+- You simply need to visit every node's edge, *before* you add it!
+- To track which nodes have been visited already, you can make a copy (or use the original) adjacency list of the graph, and remove an edge from the adjacency list as you travel down it in the DFS!
+- Once a node has no edges left in the adjacency list (no edges to visit), only then do you add the node to the result at the very end of the DFS call!
+- DFS will return the result in reverse order, so you need to reverse the result array afterwards! (Or loop through the DFS result in reverse order!)
+
+## Which node to start with
+- In a totem pole/visit every node/edge once problem, it's only worthwhile if you have a node you know is the correct starting node in the path first!
+- This way, you only loop through every edge once, rather than every edge for every node
+- This results in a linear, rather than quadratic time complexity! (Space complexity is still O(V + E) for storing the adjacency list)
+- So, the key to picking the right start node, isL *the node with 1 more in-degree than out-degree!*
+- This is because we want to start from this node, then at the end of the path through all edges, use the edge going back to the start node to finish off!
+- If you have a closed path, then all nodes will have the same in/out edge degree, so *any* node is a valid start node! (So you could just pick the first one in the adjacency list!)
+
+## Vector counting the in/out edge degree
+- In a totem pole problem, you can easily count the in/out degree in 2 separate vectors, taking the value, and giving the count of the in/out degree!
+
+## Iteratively removing adjacency list edges
+- If you want to be removing adjacency list edges one at a time, use a queue/vector instead of a set!
+- Instead of using a unordered_map<int, unordered_set<int>>, use: unordered_map<int, vector<int>>
+- This will allow you to easily access each element, one at a time, rather than dereferencing the front of an unordered_set over and over, which is much slower!
+
+
