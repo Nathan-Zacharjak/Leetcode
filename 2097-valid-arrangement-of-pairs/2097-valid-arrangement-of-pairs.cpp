@@ -10,7 +10,7 @@ public:
             inDegree[pair[1]]++;
         }
 
-        int startNode = -1;
+        int startNode = pairs[0][0];
 
         for (const auto& [node, edges]: adjList){
             if (outDegree[node] == inDegree[node] + 1){
@@ -18,8 +18,6 @@ public:
                 break;
             }
         }
-
-        if (startNode == -1) startNode = pairs[0][0];
 
         vector<int> DFSResult;
         stack<int> nodeStack;
@@ -38,11 +36,9 @@ public:
             }
         }
 
-        reverse(DFSResult.begin(), DFSResult.end());
-
         vector<vector<int>> answer;
-        for (auto i = 1; i < DFSResult.size(); i++){
-            answer.push_back({DFSResult[i - 1], DFSResult[i]});
+        for (auto i = DFSResult.size() - 1; i > 0; i--){
+            answer.push_back({DFSResult[i], DFSResult[i - 1]});
         }
 
         return answer;
