@@ -52,7 +52,7 @@ public:
                 adjList[node].pop_front();
                 nodeStack.push(nextNode);
             } else {
-                DFSResult.push_back(nodeStack.top());
+                DFSResult.push_back(node);
                 nodeStack.pop();
             }
         }
